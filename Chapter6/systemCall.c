@@ -2,6 +2,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main(int argc, char const *argv[])
 {
@@ -58,7 +59,7 @@ int main(int argc, char const *argv[])
     printf("systemCallTime: %ld\n", systemCallTime);
     printf("loopTime: %ld\n", loopTime);
     unsigned long calcTime = (systemCallTime / counter) - (loopTime / counter);
-    printf("One System-Call takes %.1ld ns\n", calcTime);
+    printf("\nOne System-Call takes %ld ns\n", calcTime);
 
     return 0;
 }
