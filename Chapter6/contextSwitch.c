@@ -59,25 +59,28 @@ int main(int argc, char const *argv[])
         fprintf(stderr, "fork failed\n");
         return 1;
     }
-    clock_gettime(CLOCK_MONOTONIC_RAW, &startContextSwitch);
-    if ((sched_setaffinity(0, length, &process)) < 1) {
-        if (childPid == 0) {
-            write(pipeM[0], string, strlen(string) + 1);
-            nBytes = read(pipeM[1], readBuffer,sizeof(readBuffer));
-            printf("Received String: %s\n", readBuffer);
-            close(pipeM[0]);
-            close(pipeM[1]);
-            exit(0);
+
+    for (int i = 0; i <= counter; i++) {
+        clock_gettime(CLOCK_MONOTONIC_RAW, &startContextSwitch);
+        if ((sched_setaffinity(0, length, &process)) < 1) {
+            if (childPid == 0) {
+                write(pipeM[0], string, strlen(string) + 1);
+                nBytes = read(pipeM[1], readBuffer,sizeof(readBuffer));
+                printf("Received String: %s\n", readBuffer);
+                clock_gettime(CLOCK_MONOTONIC_RAW, &stopContextSwitch);
+                exit(0);
+            } else {
+                nBytes = read(pipeM[0],readBuffer,sizeof(readBuffer));
+                write(pipeM[1], string, strlen(string) + 1);
+                wait(0);
+            }
         } else {
-            nBytes = read(pipeM[0],readBuffer,sizeof(readBuffer));
-            write(pipeM[1], string, strlen(string) + 1);
-            wait(0);
+            perror("Error while setting sched_affinity");
+            _exit(EXIT_FAILURE);
         }
-    } else {
-        perror("Error while setting sched_affinity");
-        _exit(EXIT_FAILURE);
     }
-    clock_gettime(CLOCK_MONOTONIC_RAW, &stopContextSwitch);
+    close(pipeM[0]);
+    close(pipeM[1]);
 
     if (startContextSwitch.tv_nsec > stopContextSwitch.tv_nsec) {
         contextSwitchTime = (((stopContextSwitch.tv_sec - 1) - startContextSwitch.tv_sec) * billion)
