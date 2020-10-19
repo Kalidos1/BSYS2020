@@ -3,7 +3,7 @@ CFLAGS = -g -W -Wall -Wextra -Wpedantic -std=$(STD) -pedantic
 STD = gnu17
 RM = rm -f
 
-TARGET = systemCall #contextSwitch
+TARGET = systemCall contextSwitch
 
 .PHONY: all clean
 
@@ -15,5 +15,5 @@ clean:
 systemCall: systemCall.c
 	$(CC) systemCall systemCall.c $(CFLAGS)
 
-#contextSwitch: contextSwitch.c
-#	$(CC) contextSwitch contextSwitch.c $(CFLAGS)
+contextSwitch: contextSwitch.c
+	$(CC) contextSwitch contextSwitch.c $(CFLAGS)

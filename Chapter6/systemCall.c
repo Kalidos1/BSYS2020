@@ -26,9 +26,10 @@ int main(int argc, char const *argv[])
         exit(1);
     }
 
+    //-----------LOOP TIME--------------
+
     struct timespec startLoop, stopLoop;
 
-    //-----------LOOP TIME--------------
     if (    clock_gettime(CLOCK_MONOTONIC_RAW, &startLoop) < 0) {
         printf("Start-Clock failed\n");
         exit(1);
@@ -42,6 +43,7 @@ int main(int argc, char const *argv[])
         exit(1);
     }
 
+    //-----------SYSTEM CALL TIME--------------
     if (startSystemCall.tv_nsec > stopSystemCall.tv_nsec) {
         systemCallTime = (((stopSystemCall.tv_sec - 1) - startSystemCall.tv_sec) * billion)
                 + ((stopSystemCall.tv_nsec + billion) - startSystemCall.tv_nsec);
@@ -49,6 +51,7 @@ int main(int argc, char const *argv[])
         systemCallTime = (stopSystemCall.tv_sec - startSystemCall.tv_sec) + (stopSystemCall.tv_nsec - startSystemCall.tv_nsec);
     }
 
+    //-----------LOOP TIME--------------
     if (startLoop.tv_nsec > stopLoop.tv_nsec) {
         loopTime = (((stopLoop.tv_sec - 1) - startLoop.tv_sec) * billion)
                          + ((stopLoop.tv_nsec + billion) - startLoop.tv_nsec);
