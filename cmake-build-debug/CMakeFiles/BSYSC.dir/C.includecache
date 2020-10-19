@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/andre/CLionProjects/BSYSC/Chapter5/Fork1.c
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+
+/Users/andre/CLionProjects/BSYSC/main.c
+stdio.h
+-
+
