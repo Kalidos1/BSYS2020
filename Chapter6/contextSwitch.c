@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #include <sched.h>
 #include <stdlib.h>
 #include <time.h>
@@ -44,7 +45,7 @@ int main(int argc, char const *argv[])
         loopTime = (stopLoop.tv_sec - startLoop.tv_sec) + (stopLoop.tv_nsec - startLoop.tv_nsec);
     }
 
-    unsigned long calcLoopTime = loopTime / (counter);
+    unsigned long calcLoopTime = loopTime / counter;
 
     cpu_set_t  process;
     CPU_ZERO(&process);
@@ -58,24 +59,25 @@ int main(int argc, char const *argv[])
         fprintf(stderr, "fork failed\n");
         return 1;
     }
+    clock_gettime(CLOCK_MONOTONIC_RAW, &startContextSwitch);
     if ((sched_setaffinity(0, length, &process)) < 1) {
         if (childPid == 0) {
-            clock_gettime(CLOCK_MONOTONIC_RAW, &startContextSwitch);
-            close(pipeM[1]);
-            nBytes = read(pipeM[0],readBuffer,sizeof(readBuffer));
+            write(pipeM[0], string, strlen(string) + 1);
+            nBytes = read(pipeM[1], readBuffer,sizeof(readBuffer));
             printf("Received String: %s\n", readBuffer);
+            close(pipeM[0]);
+            close(pipeM[1]);
             exit(0);
         } else {
-            close(pipeM[0]);
+            nBytes = read(pipeM[0],readBuffer,sizeof(readBuffer));
             write(pipeM[1], string, strlen(string) + 1);
-            clock_gettime(CLOCK_MONOTONIC_RAW, &stopContextSwitch);
-            close(pipeM[1]);
             wait(0);
         }
     } else {
         perror("Error while setting sched_affinity");
         _exit(EXIT_FAILURE);
     }
+    clock_gettime(CLOCK_MONOTONIC_RAW, &stopContextSwitch);
 
     if (startContextSwitch.tv_nsec > stopContextSwitch.tv_nsec) {
         contextSwitchTime = (((stopContextSwitch.tv_sec - 1) - startContextSwitch.tv_sec) * billion)
@@ -84,7 +86,7 @@ int main(int argc, char const *argv[])
         contextSwitchTime = (stopContextSwitch.tv_sec - startContextSwitch.tv_sec) + (stopContextSwitch.tv_nsec - startContextSwitch.tv_nsec);
     }
 
-    unsigned long calcTime = (contextSwitchTime - counter) - calcLoopTime;
+    unsigned long calcTime = (contextSwitchTime / counter) - calcLoopTime;
 
     printf("\nOne Context-Switch takes %ld ns\n", calcTime);
 
