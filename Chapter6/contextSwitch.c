@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
     const int counter = 10000;
     const unsigned long billion = 1000000000;
     struct timespec startContextSwitch, stopContextSwitch;
-    unsigned long sec[counter], nsec[counter],contextSwitchTime,loopTime;
+    unsigned long contextSwitchTime,loopTime;
     int nBytes;
     int pipeM[2];
     char* string = "Hallo, Test";
@@ -49,8 +49,9 @@ int main(int argc, char const *argv[])
 
     cpu_set_t  process;
     CPU_ZERO(&process);
-    unsigned int length = sizeof(process);
     CPU_SET(0, &process);
+
+    unsigned int length = sizeof(process);
 
 
     pipe(pipeM);
@@ -62,15 +63,15 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i <= counter; i++) {
         clock_gettime(CLOCK_MONOTONIC_RAW, &startContextSwitch);
-        if ((sched_setaffinity(0, length, &process)) < 1) {
+        if ((sched_setaffinity(0, length, &process)) == 0) {
             if (childPid == 0) {
                 write(pipeM[0], string, strlen(string) + 1);
-                nBytes = read(pipeM[1], readBuffer,sizeof(readBuffer));
+                nBytes = read(pipeM[1], readBuffer, sizeof(readBuffer));
                 printf("Received String: %s\n", readBuffer);
                 clock_gettime(CLOCK_MONOTONIC_RAW, &stopContextSwitch);
                 exit(0);
             } else {
-                nBytes = read(pipeM[0],readBuffer,sizeof(readBuffer));
+                nBytes = read(pipeM[0], readBuffer, sizeof(readBuffer));
                 write(pipeM[1], string, strlen(string) + 1);
                 wait(0);
             }
