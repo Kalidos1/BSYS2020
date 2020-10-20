@@ -12,8 +12,8 @@ int main(int argc, char const *argv[])
     struct timespec startSystemCall, stopSystemCall;
 
     //-----------SYSTEM CALL--------------
-    if (clock_gettime(CLOCK_MONOTONIC_RAW, &startSystemCall) < 0) {
-        printf("Start-Clock failed\n");
+    if (clock_gettime(CLOCK_REALTIME, &startSystemCall) < 0) { //CLOCK_MONOTIC_RAW/CLOCK_MONOTONIC gehen auch
+        printf("Start-Clock failed\n");			       // -> Alle ca. 500ns 
         exit(1);
     }
 
@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
         getpid();
     }
 
-    if (clock_gettime(CLOCK_MONOTONIC_RAW, &stopSystemCall) < 0 ) {
+    if (clock_gettime(CLOCK_REALTIME, &stopSystemCall) < 0 ) {
         printf("Stop-Clock failed\n");
         exit(1);
     }
@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
 
     struct timespec startLoop, stopLoop;
 
-    if (    clock_gettime(CLOCK_MONOTONIC_RAW, &startLoop) < 0) {
+    if (    clock_gettime(CLOCK_REALTIME, &startLoop) < 0) {
         printf("Start-Clock failed\n");
         exit(1);
     }
@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
     for (int i = 0; i <= counter; i++) {
     }
 
-    if (clock_gettime(CLOCK_MONOTONIC_RAW, &stopLoop) < 0 ) {
+    if (clock_gettime(CLOCK_REALTIME, &stopLoop) < 0 ) {
         printf("Stop-Clock failed\n");
         exit(1);
     }
