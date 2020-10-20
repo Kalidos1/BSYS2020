@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
     }  else {
         x = 150;
         // parent goes down this path (main)
-        printf("Child Variable X: %d\n", x);
+        printf("Parent Variable X: %d\n", x);
         printf("hello, I am parent of %d (pid:%d)\n",
                rc, (int) getpid());
     }

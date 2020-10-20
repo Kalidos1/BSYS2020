@@ -50,6 +50,7 @@ int main(int argc, char const *argv[])
     cpu_set_t  process;
     CPU_ZERO(&process);
     CPU_SET(4, &process); //CPU 4,7-8,11 sind Möglich
+                          //"cat /sys/fs/cgroup/cpuset/cpuset.cpus"
 
     unsigned int length = sizeof(process);
 

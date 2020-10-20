@@ -28,8 +28,13 @@ int main(int argc, char *argv[]) {
 
  /*
   * Question 4a:
-  * Every Exec() Method works
-  * execve() and execvP() do need 3 Parameters => 1. argv, 2. searchpath, but these work also
-  * The other ones all Take 2 Parameters and everything does what is is supposed to
+  * Jede Exec() Methode funktioniert
+  * execve() and execvP() brauchen 3 Parameter => 1. argv, 2. searchpath, aber mit diesen funktioniert es auch
+  * Alle anderen, die 2 Parameter brauchen, funktionieren so wie sie es sollen
+  * Es gibt viele verschiedene Exec() calls für:
+  * -> Unterschiedliche Anfänge der Programme
+  * -> Unterschiedliche Ziele
+  * -> Von der CMD-Line Dinge übergeben mit execve() => Argv
+  * ->
   *
   */

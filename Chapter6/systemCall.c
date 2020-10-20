@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <sys/time.h>
+#include <sys/time.h> // Ist nötig für die Ausführung auf dem Container
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
@@ -7,7 +7,7 @@
 int main(int argc, char const *argv[])
 {
     const int counter = 1000000;
-    const unsigned long billion = 1000000000;
+    const unsigned long billion = 1000000000; //Für die Umrechnung -> Sekunde zu Nanosekunde (1 Milliarde)
     unsigned long systemCallTime,loopTime;
     struct timespec startSystemCall, stopSystemCall;
 
@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
 
     struct timespec startLoop, stopLoop;
 
-    if (    clock_gettime(CLOCK_REALTIME, &startLoop) < 0) {
+    if (clock_gettime(CLOCK_REALTIME, &startLoop) < 0) {
         printf("Start-Clock failed\n");
         exit(1);
     }
