@@ -89,6 +89,43 @@ Aufgabe 5:
 
 -  The pmap command reports the memory map of a process or processes.
 
-Aufgabe 6:
+Aufgabe 6+7:
 
--
+- Siehe Aufgabe6+7.txt für mehr Daten
+- Bei der normalen Variante (-x) sieht man die jeweilige Adresse,
+die KBytes, den RSS, den Dirty Bit,
+welchen Modus und das Mapping was alles zu dem jeweiligen Prozess gehört, was gerade gemacht wird
+-> Mit -X oder -XX sieht man sehr viel andere zusätzliche Informationen die heutzutage in einem Adress Space benutzt werden,
+anstatt unserem Konzeption von code/stack/heap
+
+
+Aufgabe 8:
+
+Address           Kbytes     RSS   Dirty Mode  Mapping
+0000562b865ce000       4       4       0 r---- memory-user
+0000562b865cf000       4       4       0 r-x-- memory-user
+0000562b865d0000       4       4       0 r---- memory-user
+0000562b865d1000       4       4       4 r---- memory-user
+0000562b865d2000       4       4       4 rw--- memory-user
+0000562b883a3000     132       4       4 rw---   [ anon ]
+00007f06ebe53000    9768    9768    9768 rw---   [ anon ]
+00007f06ec7dd000     136     136       0 r---- libc-2.28.so
+00007f06ec7ff000    1312     952       0 r-x-- libc-2.28.so
+00007f06ec947000     304     100       0 r---- libc-2.28.so
+00007f06ec993000       4       0       0 ----- libc-2.28.so
+00007f06ec994000      16      16      16 r---- libc-2.28.so
+00007f06ec998000       8       8       8 rw--- libc-2.28.so
+00007f06ec99a000      24      20      20 rw---   [ anon ]
+00007f06ec9b0000       4       4       0 r---- ld-2.28.so
+00007f06ec9b1000     120     120       0 r-x-- ld-2.28.so
+00007f06ec9cf000      32      32       0 r---- ld-2.28.so
+00007f06ec9d7000       4       4       4 r---- ld-2.28.so
+00007f06ec9d8000       4       4       4 rw--- ld-2.28.so
+00007f06ec9d9000       4       4       4 rw---   [ anon ]
+00007fff12777000     132      12      12 rw---   [ stack ]
+00007fff1279b000      12       0       0 r----   [ anon ]
+00007fff1279e000       4       4       0 r-x--   [ anon ]
+ffffffffff600000       4       0       0 --x--   [ anon ]
+
+-> Man sieht viel weniger prozesse die einwirken auf das Programm -> Ein paar Bibliotheks Aufrufe
+-> Nichts spezielles was jetzt von den anderen Programmen anderst ist.
