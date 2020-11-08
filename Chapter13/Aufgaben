@@ -59,7 +59,7 @@ Free mit memory-user.c 10 Megabyte:
 
 an851goe@ct-bsys-ws20-18:~$ free
               total        used        free      shared  buff/cache   available
-Mem:        2097152     1624716       39064       70928      433372      472436
+Mem:        2097152     1597104       64656       71156      435392      500048
 Swap:       3145728          12     3145716
 
 -> Benutzte Memory geht nach oben -> Freies Memory nach unten -> Verfügbares geht auch nach unten,
@@ -67,12 +67,28 @@ wie angenommen belegt das Programm ein Teil der Memory
 
 an851goe@ct-bsys-ws20-18:~$ free -m
               total        used        free      shared  buff/cache   available
-Mem:           2048        1548          76          69         423         499
+Mem:           2048        1549          72          69         425         498
 Swap:          3072           0        3071
 
 an851goe@ct-bsys-ws20-18:~$ free -m
               total        used        free      shared  buff/cache   available
-Mem:           2048        1586          37          69         423         461
+Mem:           2048        1559          63          69         425         488
 Swap:          3072           0        3071
 
--> Mit 10 MB allocated, verbraucht es dennoch mehr als man mit dem Argument übergibt
+-> Mit 10 MB allocated, verbraucht das Program etwa gleich viel
+wie der Befehl Free anzeigt ca. 10 MB verbrauch bei free, used und available
+
+an851goe@ct-bsys-ws20-18:~$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:           2048        1950           0          58          97          97
+Swap:          3072         334        2737
+
+-> Wenn vie verbraucht wirt, dann kommt der Swap ins Spiel bei dem es dann diese Restlichen anzeigt
+
+Aufgabe 5:
+
+-  The pmap command reports the memory map of a process or processes.
+
+Aufgabe 6:
+
+-

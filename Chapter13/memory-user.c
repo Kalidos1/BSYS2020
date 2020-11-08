@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int main(int argc, char *argv[]) {
     if (argc > 2) {
@@ -21,6 +22,9 @@ int main(int argc, char *argv[]) {
         if (array == NULL) {
             printf("malloc of size %ld failed", megabytes);
         }
+
+        printf("PID: %d\n", getpid());
+        printf("Size of allocated bytes: %lu\n", megabytes);
 
         for(i = 0; i < megabytes + 1; i++) {
             array[i] = 'a';
