@@ -24,7 +24,6 @@ int main(int argc, char *argv[]) {
 
         for(i = 0; i < megabytes + 1; i++) {
             array[i] = 1;
-
             if (i == megabytes) {
                 i = 0;
             }
