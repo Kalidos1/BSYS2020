@@ -66,12 +66,14 @@ int main(int argc, char const *argv[])
         clock_gettime(CLOCK_MONOTONIC_RAW, &startContextSwitch);
         if ((sched_setaffinity(0, length, &process)) == 0) {
             if (childPid == 0) {
+                close(pipeM[1]);
                 write(pipeM[0], string, strlen(string) + 1);
                 nBytes = read(pipeM[1], readBuffer, sizeof(readBuffer));
                 printf("Received String: %s\n", readBuffer);
                 clock_gettime(CLOCK_MONOTONIC_RAW, &stopContextSwitch);
                 exit(0);
             } else {
+                close(pipeM[0]);
                 nBytes = read(pipeM[0], readBuffer, sizeof(readBuffer));
                 write(pipeM[1], string, strlen(string) + 1);
                 wait(0);
@@ -81,8 +83,6 @@ int main(int argc, char const *argv[])
             _exit(EXIT_FAILURE);
         }
     }
-    close(pipeM[0]);
-    close(pipeM[1]);
 
     if (startContextSwitch.tv_nsec > stopContextSwitch.tv_nsec) {
         contextSwitchTime = (((stopContextSwitch.tv_sec - 1) - startContextSwitch.tv_sec) * billion)

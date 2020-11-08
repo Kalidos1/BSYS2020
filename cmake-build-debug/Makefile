@@ -143,6 +143,33 @@ BSYSC/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/build
 .PHONY : BSYSC/fast
 
+Chapter13/memory-user.o: Chapter13/memory-user.c.o
+
+.PHONY : Chapter13/memory-user.o
+
+# target to build an object file
+Chapter13/memory-user.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter13/memory-user.c.o
+.PHONY : Chapter13/memory-user.c.o
+
+Chapter13/memory-user.i: Chapter13/memory-user.c.i
+
+.PHONY : Chapter13/memory-user.i
+
+# target to preprocess a source file
+Chapter13/memory-user.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter13/memory-user.c.i
+.PHONY : Chapter13/memory-user.c.i
+
+Chapter13/memory-user.s: Chapter13/memory-user.c.s
+
+.PHONY : Chapter13/memory-user.s
+
+# target to generate assembly for a file
+Chapter13/memory-user.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter13/memory-user.c.s
+.PHONY : Chapter13/memory-user.c.s
+
 Chapter5/Question1/ForkVariable.o: Chapter5/Question1/ForkVariable.c.o
 
 .PHONY : Chapter5/Question1/ForkVariable.o
@@ -449,6 +476,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... BSYSC"
+	@echo "... Chapter13/memory-user.o"
+	@echo "... Chapter13/memory-user.i"
+	@echo "... Chapter13/memory-user.s"
 	@echo "... Chapter5/Question1/ForkVariable.o"
 	@echo "... Chapter5/Question1/ForkVariable.i"
 	@echo "... Chapter5/Question1/ForkVariable.s"

@@ -27,6 +27,6 @@ int main(int argc, char *argv[]) {
   * Question 3a:
   * Keinen Weg gefunden der das ohne wait() macht ...
   * Variable setzen geht nicht, da beide Prozesse ihre "eigene" Variable haben
-  * Man kann nicht gewährleisten ohne wait(), das beide in einer bestimmten Reihenfolge ablaufen
-  *
+  * SLEEP() funktioniert
+  * Einen Weg um, den anderen Process zu signalisieren wäre mit einem SIGNAL
   */

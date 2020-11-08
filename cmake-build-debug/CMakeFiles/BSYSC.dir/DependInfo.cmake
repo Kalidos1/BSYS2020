@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/Users/andre/CLionProjects/BSYSC/Chapter13/memory-user.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter13/memory-user.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter5/Question1/ForkVariable.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter5/Question1/ForkVariable.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter5/Question2/ForkOutput.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter5/Question2/ForkOutput.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter5/Question3/ForkWithoutWait.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter5/Question3/ForkWithoutWait.c.o"
