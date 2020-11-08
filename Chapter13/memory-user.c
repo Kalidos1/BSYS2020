@@ -23,14 +23,8 @@ int main(int argc, char *argv[]) {
         }
 
         for(i = 0; i < megabytes + 1; i++) {
-<<<<<<< HEAD
-            array[i] = 1;
-=======
             array[i] = 'a';
 
-            printf("%i", array[i]);
-
->>>>>>> 182e0676178f78e857bc3bcef4a2716c353e96ef
             if (i == megabytes) {
                 i = 0;
             }
