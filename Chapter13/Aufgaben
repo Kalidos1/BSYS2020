@@ -44,4 +44,35 @@ Swap:         3,0Gi       0,0Ki       3,0Gi
 
 Aufgabe 3:
 
+- siehe memory-user.c
 
+Aufgabe 4:
+
+Free ohne andere Prozesse:
+
+an851goe@ct-bsys-ws20-18:~$ free
+              total        used        free      shared  buff/cache   available
+Mem:        2097152     1585232       78548       70928      433372      511920
+Swap:       3145728          12     3145716
+
+Free mit memory-user.c 10 Megabyte:
+
+an851goe@ct-bsys-ws20-18:~$ free
+              total        used        free      shared  buff/cache   available
+Mem:        2097152     1624716       39064       70928      433372      472436
+Swap:       3145728          12     3145716
+
+-> Benutzte Memory geht nach oben -> Freies Memory nach unten -> Verfügbares geht auch nach unten,
+wie angenommen belegt das Programm ein Teil der Memory
+
+an851goe@ct-bsys-ws20-18:~$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:           2048        1548          76          69         423         499
+Swap:          3072           0        3071
+
+an851goe@ct-bsys-ws20-18:~$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:           2048        1586          37          69         423         461
+Swap:          3072           0        3071
+
+-> Mit 10 MB allocated, verbraucht es dennoch mehr als man mit dem Argument übergibt
