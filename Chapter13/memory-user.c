@@ -13,17 +13,19 @@ int main(int argc, char *argv[]) {
     if (argc == 2) {
         unsigned long million = 1000000; //Megabytes
         unsigned long megabytes = (atoi(argv[1]) * million);
-        int* array;
+        char* array;
         unsigned long i;
 
-        array = (int*) malloc(megabytes * sizeof(int));
+        array = (char*) malloc(megabytes * sizeof(char));
 
         if (array == NULL) {
             printf("malloc of size %ld failed", megabytes);
         }
 
         for(i = 0; i < megabytes + 1; i++) {
-            array[i] = 1;
+            array[i] = 'a';
+
+            printf("%i", array[i]);
 
             if (i == megabytes) {
                 i = 0;
@@ -35,3 +37,5 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
+//Did it with Int first but int does allocate 2-4 Byte per int, so it does result in more Allocated MEM
