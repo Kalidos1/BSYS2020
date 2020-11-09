@@ -51,4 +51,16 @@ Segmentation fault
 
 Aufgabe 4:
 
+- Es passiert nichts, das Programm beendet sich einfach
+
+(gdb) run
+Starting program: /home/an851goe/z-drive/BSYS2020/Chapter14/mallocFree
+Adress of Pointer: 1431671392
+[Inferior 1 (process 26593) exited normally]
+
+-> gdb zeigt nichts
+-> Valgrind zeigt, dass Daten verloren gehen, und zeigt eine "LEAK Summary"
+
+Aufgabe 5:
+
 -

@@ -170,6 +170,33 @@ Chapter13/memory-user.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter13/memory-user.c.s
 .PHONY : Chapter13/memory-user.c.s
 
+Chapter14/integerArray.o: Chapter14/integerArray.c.o
+
+.PHONY : Chapter14/integerArray.o
+
+# target to build an object file
+Chapter14/integerArray.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter14/integerArray.c.o
+.PHONY : Chapter14/integerArray.c.o
+
+Chapter14/integerArray.i: Chapter14/integerArray.c.i
+
+.PHONY : Chapter14/integerArray.i
+
+# target to preprocess a source file
+Chapter14/integerArray.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter14/integerArray.c.i
+.PHONY : Chapter14/integerArray.c.i
+
+Chapter14/integerArray.s: Chapter14/integerArray.c.s
+
+.PHONY : Chapter14/integerArray.s
+
+# target to generate assembly for a file
+Chapter14/integerArray.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter14/integerArray.c.s
+.PHONY : Chapter14/integerArray.c.s
+
 Chapter14/mallocFree.o: Chapter14/mallocFree.c.o
 
 .PHONY : Chapter14/mallocFree.o
@@ -533,6 +560,9 @@ help:
 	@echo "... Chapter13/memory-user.o"
 	@echo "... Chapter13/memory-user.i"
 	@echo "... Chapter13/memory-user.s"
+	@echo "... Chapter14/integerArray.o"
+	@echo "... Chapter14/integerArray.i"
+	@echo "... Chapter14/integerArray.s"
 	@echo "... Chapter14/mallocFree.o"
 	@echo "... Chapter14/mallocFree.i"
 	@echo "... Chapter14/mallocFree.s"
