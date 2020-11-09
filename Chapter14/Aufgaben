@@ -1,0 +1,54 @@
+____________QUESTIONS_____________
+
+Aufgabe 1:
+
+- Running this Results in an Segmentation Fault Error
+
+Aufgabe 2:
+
+- (gdb) run
+  Starting program: /home/an851goe/z-drive/BSYS2020/Chapter14/null
+
+  Program received signal SIGSEGV, Segmentation fault.
+  0x0000555555555150 in main (argc=1, argv=0x7fffffffe978) at null.c:11
+  11	    value = *p;
+
+-> Es zeigt den Error + an welcher Stelle + mehr über den Error
+
+Aufgabe 3:
+
+an851goe@ct-bsys-ws20-18:~/z-drive/BSYS2020/Chapter14$ valgrind --leak-check=yes ./null
+==24547== Memcheck, a memory error detector
+==24547== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==24547== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==24547== Command: ./null
+==24547==
+==24547== Invalid read of size 4
+==24547==    at 0x109150: main (null.c:11)
+==24547==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==24547==
+==24547==
+==24547== Process terminating with default action of signal 11 (SIGSEGV)
+==24547==  Access not within mapped region at address 0x0
+==24547==    at 0x109150: main (null.c:11)
+==24547==  If you believe this happened as a result of a stack
+==24547==  overflow in your program's main thread (unlikely but
+==24547==  possible), you can try to increase the size of the
+==24547==  main thread stack using the --main-stacksize= flag.
+==24547==  The main thread stack size used in this run was 8388608.
+==24547==
+==24547== HEAP SUMMARY:
+==24547==     in use at exit: 0 bytes in 0 blocks
+==24547==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==24547==
+==24547== All heap blocks were freed -- no leaks are possible
+==24547==
+==24547== For counts of detected and suppressed errors, rerun with: -v
+==24547== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+Segmentation fault
+
+-> Valgrind zeigt die Errors ein bisschen genauer als "gdb" und weist auch auf eine Lösung hin
+
+Aufgabe 4:
+
+-
