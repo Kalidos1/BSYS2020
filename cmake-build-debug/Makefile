@@ -170,6 +170,33 @@ Chapter13/memory-user.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter13/memory-user.c.s
 .PHONY : Chapter13/memory-user.c.s
 
+Chapter14/null.o: Chapter14/null.c.o
+
+.PHONY : Chapter14/null.o
+
+# target to build an object file
+Chapter14/null.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter14/null.c.o
+.PHONY : Chapter14/null.c.o
+
+Chapter14/null.i: Chapter14/null.c.i
+
+.PHONY : Chapter14/null.i
+
+# target to preprocess a source file
+Chapter14/null.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter14/null.c.i
+.PHONY : Chapter14/null.c.i
+
+Chapter14/null.s: Chapter14/null.c.s
+
+.PHONY : Chapter14/null.s
+
+# target to generate assembly for a file
+Chapter14/null.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter14/null.c.s
+.PHONY : Chapter14/null.c.s
+
 Chapter5/Question1/ForkVariable.o: Chapter5/Question1/ForkVariable.c.o
 
 .PHONY : Chapter5/Question1/ForkVariable.o
@@ -479,6 +506,9 @@ help:
 	@echo "... Chapter13/memory-user.o"
 	@echo "... Chapter13/memory-user.i"
 	@echo "... Chapter13/memory-user.s"
+	@echo "... Chapter14/null.o"
+	@echo "... Chapter14/null.i"
+	@echo "... Chapter14/null.s"
 	@echo "... Chapter5/Question1/ForkVariable.o"
 	@echo "... Chapter5/Question1/ForkVariable.i"
 	@echo "... Chapter5/Question1/ForkVariable.s"

@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "BSYSC"
   "BSYSC.pdb"
   "CMakeFiles/BSYSC.dir/Chapter13/memory-user.c.o"
+  "CMakeFiles/BSYSC.dir/Chapter14/null.c.o"
   "CMakeFiles/BSYSC.dir/Chapter5/Question1/ForkVariable.c.o"
   "CMakeFiles/BSYSC.dir/Chapter5/Question2/ForkOutput.c.o"
   "CMakeFiles/BSYSC.dir/Chapter5/Question3/ForkWithoutWait.c.o"
