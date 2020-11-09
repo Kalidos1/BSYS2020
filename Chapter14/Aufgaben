@@ -63,4 +63,8 @@ Adress of Pointer: 1431671392
 
 Aufgabe 5:
 
--
+- Es passiert nichts, das Programm beendet sich einfach
+
+-> Valgrind zeigt wieder den Fehler in der "Leak Summary" und zeigt,
+dass 400 Bytes verloren gehen
+-> Es zeigt auch dazu 2 Errors

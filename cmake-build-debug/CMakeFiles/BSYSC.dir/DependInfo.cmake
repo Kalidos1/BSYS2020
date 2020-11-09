@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/andre/CLionProjects/BSYSC/Chapter13/memory-user.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter13/memory-user.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter14/integerArray.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter14/integerArray.c.o"
+  "/Users/andre/CLionProjects/BSYSC/Chapter14/integerArrayFree.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter14/integerArrayFree.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter14/mallocFree.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter14/mallocFree.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter14/null.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter14/null.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter5/Question1/ForkVariable.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter5/Question1/ForkVariable.c.o"

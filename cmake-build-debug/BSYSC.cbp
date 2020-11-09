@@ -84,6 +84,9 @@
 		<Unit filename="/Users/andre/CLionProjects/BSYSC/Chapter14/integerArray.c">
 			<Option target="BSYSC"/>
 		</Unit>
+		<Unit filename="/Users/andre/CLionProjects/BSYSC/Chapter14/integerArrayFree.c">
+			<Option target="BSYSC"/>
+		</Unit>
 		<Unit filename="/Users/andre/CLionProjects/BSYSC/Chapter14/mallocFree.c">
 			<Option target="BSYSC"/>
 		</Unit>

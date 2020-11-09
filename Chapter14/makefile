@@ -3,7 +3,7 @@ CFLAGS = -g -W -Wall -Wextra -Wpedantic -std=$(STD) -pedantic
 STD = gnu17
 RM = rm -f
 
-TARGET = null mallocFree integerArray
+TARGET = null mallocFree integerArray integerArrayFree
 
 .PHONY: all clean
 
@@ -20,3 +20,6 @@ mallocFree: mallocFree.c
 
 integerArray: integerArray.c
 	$(CC) integerArray integerArray.c $(CFLAGS)
+
+integerArrayFree: integerArrayFree.c
+	$(CC) integerArrayFree integerArrayFree.c $(CFLAGS)
