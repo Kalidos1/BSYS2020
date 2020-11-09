@@ -68,3 +68,11 @@ Aufgabe 5:
 -> Valgrind zeigt wieder den Fehler in der "Leak Summary" und zeigt,
 dass 400 Bytes verloren gehen
 -> Es zeigt auch dazu 2 Errors
+
+Aufgabe 6:
+
+- Wenn ich ein Element aus dem Array lese, zeigt es mir an: (Das Program läuft)
+an851goe@ct-bsys-ws20-18:~/z-drive/BSYS2020/Chapter14$ ./integerArrayFree
+Value: 0
+
+- Valgrind zeigt wieder 1 Error, diesmal aber keine Leaks, sondern ein Invalid Read of size 4
