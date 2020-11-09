@@ -3,7 +3,7 @@ CFLAGS = -g -W -Wall -Wextra -Wpedantic -std=$(STD) -pedantic
 STD = gnu17
 RM = rm -f
 
-TARGET = null
+TARGET = null mallocFree
 
 .PHONY: all clean
 
@@ -14,3 +14,6 @@ clean:
 
 null: null.c
 	$(CC) null null.c $(CFLAGS)
+
+mallocFree: mallocFree.c
+	$(CC) mallocFree mallocFree.c $(CFLAGS)
