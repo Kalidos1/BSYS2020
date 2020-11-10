@@ -10,3 +10,5 @@ int main(int argc, char *argv[]) {
     printf("Value: %i\n", data[10]);
     return 0;
 }
+
+// Error auch ohne gdb/Valgrind

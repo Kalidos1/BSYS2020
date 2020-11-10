@@ -8,3 +8,5 @@ int main(int argc, char *argv[]) {
     data[100] = 0;
     return 0;
 }
+
+//Error nur mit Valgrind, Programm läuft durch, gdb zeigt nichts

@@ -83,7 +83,7 @@ an851goe@ct-bsys-ws20-18:~$ free -m
 Mem:           2048        1950           0          58          97          97
 Swap:          3072         334        2737
 
--> Wenn vie verbraucht wirt, dann kommt der Swap ins Spiel bei dem es dann diese Restlichen anzeigt
+-> Wenn sie verbraucht wirt, dann kommt der Swap ins Spiel bei dem es dann diese Restlichen anzeigt
 
 Aufgabe 5:
 
@@ -97,6 +97,7 @@ die KBytes, den RSS, den Dirty Bit,
 welchen Modus und das Mapping was alles zu dem jeweiligen Prozess gehört, was gerade gemacht wird
 -> Mit -X oder -XX sieht man sehr viel andere zusätzliche Informationen die heutzutage in einem Adress Space benutzt werden,
 anstatt unserem Konzeption von code/stack/heap
+-> Dazu wird der Stack/Heap angezeigt
 
 
 Aufgabe 8:
@@ -108,7 +109,7 @@ Address           Kbytes     RSS   Dirty Mode  Mapping
 0000562b865d1000       4       4       4 r---- memory-user
 0000562b865d2000       4       4       4 rw--- memory-user
 0000562b883a3000     132       4       4 rw---   [ anon ]
-00007f06ebe53000    9768    9768    9768 rw---   [ anon ]
+00007f06ebe53000    9768    9768    9768 rw---   [ anon ]  --> 10 MB im HEAP
 00007f06ec7dd000     136     136       0 r---- libc-2.28.so
 00007f06ec7ff000    1312     952       0 r-x-- libc-2.28.so
 00007f06ec947000     304     100       0 r---- libc-2.28.so
