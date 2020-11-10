@@ -76,3 +76,14 @@ an851goe@ct-bsys-ws20-18:~/z-drive/BSYS2020/Chapter14$ ./integerArrayFree
 Value: 0
 
 - Valgrind zeigt wieder 1 Error, diesmal aber keine Leaks, sondern ein Invalid Read of size 4
+
+Aufgabe 7:
+
+- Diesen Fehler findet man auch ohne Valgrind:
+
+an851goe@ct-bsys-ws20-18:~/z-drive/BSYS2020/Chapter14$ ./integerArrayFree
+free(): invalid pointer
+Aborted
+
+Aufgabe 8:
+
