@@ -18,8 +18,8 @@ int main(int argc, char const *argv[])
         const int NUMPAGES = atoi(argv[1]);
         const int counter = atoi(argv[2]);
         const unsigned long billion = 1000000000; //Für die Umrechnung -> Sekunde zu Nanosekunde (1 Milliarde)
-        unsigned long systemCallTime, loopTime;
-        struct timespec startSystemCall, stopSystemCall;
+        unsigned long tlbAccessTime, loopTime;
+        struct timespec startTLBAccess, stopTLBAccess;
         int jump;
         int* array = (int*) malloc(counter * sizeof(int));
         const int PAGESIZE = 4096; // Im Container mit -> "getconf PAGESIZE"
@@ -29,7 +29,7 @@ int main(int argc, char const *argv[])
         printf("Number of Iterations %i\n", counter);
 
         //-----------TLB Call--------------
-        if (clock_gettime(CLOCK_MONOTONIC_RAW, &startSystemCall) < 0) { //CLOCK_REALTIME/CLOCK_MONOTONIC gehen auch
+        if (clock_gettime(CLOCK_MONOTONIC_RAW, &startTLBAccess) < 0) { //CLOCK_REALTIME/CLOCK_MONOTONIC gehen auch
             printf("Start-Clock failed\n");                                        // -> Alle ca. 500ns
             exit(1);
         }
@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
             }
         }
 
-        if (clock_gettime(CLOCK_MONOTONIC_RAW, &stopSystemCall) < 0) {
+        if (clock_gettime(CLOCK_MONOTONIC_RAW, &stopTLBAccess) < 0) {
             printf("Stop-Clock failed\n");
             exit(1);
         }
@@ -65,13 +65,13 @@ int main(int argc, char const *argv[])
 
         //-----------SYSTEM CALL TIME--------------
         // -> Umrechnung, falls erster Zeitpunkt < zweiter Zeitpunkt
-        if (startSystemCall.tv_nsec > stopSystemCall.tv_nsec) {
-            systemCallTime = (((stopSystemCall.tv_sec - 1) - startSystemCall.tv_sec) * billion)
-                             + ((stopSystemCall.tv_nsec + billion) - startSystemCall.tv_nsec);
+        if (startTLBAccess.tv_nsec > stopTLBAccess.tv_nsec) {
+            tlbAccessTime = (((stopTLBAccess.tv_sec - 1) - startTLBAccess.tv_sec) * billion)
+                            + ((stopTLBAccess.tv_nsec + billion) - startTLBAccess.tv_nsec);
         } else {
             // Berechnung der Zeit
-            systemCallTime = (stopSystemCall.tv_sec - startSystemCall.tv_sec) +
-                             (stopSystemCall.tv_nsec - startSystemCall.tv_nsec);
+            tlbAccessTime = (stopTLBAccess.tv_sec - startTLBAccess.tv_sec) +
+                            (stopTLBAccess.tv_nsec - startTLBAccess.tv_nsec);
         }
 
         //-----------LOOP TIME--------------
@@ -84,10 +84,10 @@ int main(int argc, char const *argv[])
             loopTime = (stopLoop.tv_sec - startLoop.tv_sec) + (stopLoop.tv_nsec - startLoop.tv_nsec);
         }
 
-        printf("systemCallTime: %ld\n", systemCallTime);
+        printf("tlbAccessTime: %ld\n", tlbAccessTime);
         printf("loopTime: %ld\n", loopTime);
-        unsigned long calcTime = (systemCallTime / counter) - (loopTime / counter);
-        printf("\nOne System-Call takes %ld ns\n", calcTime);
+        unsigned long calcTime = (tlbAccessTime / counter) - (loopTime / counter);
+        printf("\nOne TLB-Access takes %ld ns\n", calcTime);
 
         return 0;
     }
