@@ -116,10 +116,93 @@ Aufgabe 5:
 
 Aufgabe 6:
 
+- Man kann mit "set_schedaffinity" einen Prozess nur auf einem CPU laufen lassen
+- Mit mehreren CPU´s wird über die anderen CPUs gewwechselt und somit kommt Threading vor, was es im ganzen Schneller ablaufen lässt
+- Wobei es sich nicht soviel ändert
 
--
+- Möglicherweise, muss man mit einem CPU auch kein Contextwechselt/IO vornehmen
 
+an851goe@ct-bsys-ws20-18:~/z-drive/BSYS2020/Chapter19$ ./tlb.sh 1 20
+NEUE ITERATION
+1
+20
+Number of Pages 1
+Number of Iterations 20
+tlbAccessTime: 889
 
+One TLB-Access takes 67 ns
+NEUE ITERATION
+2
+40
+Number of Pages 2
+Number of Iterations 40
+tlbAccessTime: 7669
+
+One TLB-Access takes 580 ns
+NEUE ITERATION
+4
+80
+Number of Pages 4
+Number of Iterations 80
+tlbAccessTime: 24104
+
+One TLB-Access takes 920 ns
+NEUE ITERATION
+8
+160
+Number of Pages 8
+Number of Iterations 160
+tlbAccessTime: 67292
+
+One TLB-Access takes 1022 ns
+NEUE ITERATION
+16
+320
+Number of Pages 16
+Number of Iterations 320
+tlbAccessTime: 253773
+
+One TLB-Access takes 1651 ns
+NEUE ITERATION
+32
+640
+Number of Pages 32
+Number of Iterations 640
+tlbAccessTime: 989888
+
+One TLB-Access takes 3164 ns
+NEUE ITERATION
+64
+1280
+Number of Pages 64
+Number of Iterations 1280
+tlbAccessTime: 4617200
+
+One TLB-Access takes 5873 ns
+NEUE ITERATION
+128
+2560
+Number of Pages 128
+Number of Iterations 2560
+tlbAccessTime: 19484366
+
+One TLB-Access takes 10241 ns
+NEUE ITERATION
+256
+5120
+Number of Pages 256
+Number of Iterations 5120
+tlbAccessTime: 77647341
+
+One TLB-Access takes 17987 ns
+NEUE ITERATION
+512
+10240
+Number of Pages 512
+Number of Iterations 10240
+tlbAccessTime: 308925272
+
+One TLB-Access takes 34005 ns
 
 
 

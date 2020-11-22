@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
 
         cpu_set_t set;
         CPU_ZERO(&set);
-        CPU_SET(0, &set);
+        CPU_SET(4, &set);
         if (sched_setaffinity(0, sizeof(set), &set)) {
             perror("error setting sched_affinity");
             _exit(EXIT_FAILURE);
@@ -45,7 +45,7 @@ int main(int argc, char const *argv[])
 
             for (int i = 1; i < counter; i++) {
 
-                int* array = (int*) malloc((counter * NUMPAGES) * sizeof(int));
+                int* array = (int*) calloc((counter * NUMPAGES), sizeof(int));
 
                 if (array == NULL) {
                     fprintf(stderr, "Error allocating memory: ");
