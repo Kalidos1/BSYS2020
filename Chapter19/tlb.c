@@ -43,7 +43,7 @@ int main(int argc, char const *argv[])
 
             long long totalTlbAccessTime = 0;
 
-            for (int i = 1; i < counter; i++) {
+            for (volatile int i = 1; i < counter; i++) {
 
                 int* array = (int*) calloc((counter * NUMPAGES), sizeof(int));
 
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
                     exit(EXIT_FAILURE);
                 }
 
-                for (int j = 1; j < NUMPAGES * jump; j += jump) {
+                for (volatile int j = 1; j < NUMPAGES * jump; j += jump) {
 
                     //-----------TLB Call--------------
                     if (clock_gettime(CLOCK_MONOTONIC_RAW, &startTLBAccess) < 0) { //CLOCK_REALTIME/CLOCK_MONOTONIC gehen auch

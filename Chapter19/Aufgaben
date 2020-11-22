@@ -208,6 +208,89 @@ One TLB-Access takes 34005 ns
 
 Aufgabe 7:
 
+- Malloc / Calloc
+- Calloc initilisiert alle Einträge mit Nullen
+- Es gibt keine großen Unterschiede, jedoch braucht es erheblich länger, wenn die Nummer der Pages und Iterationen immer länger werden
 
 
--
+an851goe@ct-bsys-ws20-18:~/z-drive/BSYS2020/Chapter19$ ./tlb.sh 1 20
+NEUE ITERATION
+1
+20
+Number of Pages 1
+Number of Iterations 20
+tlbAccessTime: 947
+
+One TLB-Access takes 74 ns
+NEUE ITERATION
+2
+40
+Number of Pages 2
+Number of Iterations 40
+tlbAccessTime: 7926
+
+One TLB-Access takes 604 ns
+NEUE ITERATION
+4
+80
+Number of Pages 4
+Number of Iterations 80
+tlbAccessTime: 23696
+
+One TLB-Access takes 909 ns
+NEUE ITERATION
+8
+160
+Number of Pages 8
+Number of Iterations 160
+tlbAccessTime: 71454
+
+One TLB-Access takes 1170 ns
+NEUE ITERATION
+16
+320
+Number of Pages 16
+Number of Iterations 320
+tlbAccessTime: 240856
+
+One TLB-Access takes 1504 ns
+NEUE ITERATION
+32
+640
+Number of Pages 32
+Number of Iterations 640
+tlbAccessTime: 873774
+
+One TLB-Access takes 1822 ns
+NEUE ITERATION
+64
+1280
+Number of Pages 64
+Number of Iterations 1280
+tlbAccessTime: 4580670
+
+One TLB-Access takes 5383 ns
+NEUE ITERATION
+128
+2560
+Number of Pages 128
+Number of Iterations 2560
+tlbAccessTime: 20507903
+
+One TLB-Access takes 12334 ns
+NEUE ITERATION
+256
+5120
+Number of Pages 256
+Number of Iterations 5120
+tlbAccessTime: 78292040
+
+One TLB-Access takes 17827 ns
+NEUE ITERATION
+512
+10240
+Number of Pages 512
+Number of Iterations 10240
+tlbAccessTime: 719354206
+
+One TLB-Access takes 73115 ns
