@@ -1,8 +1,12 @@
-#include <stdio.h>
-#include <sys/time.h> // Ist nötig für die Ausführung auf dem Container
-#include <unistd.h>
+#define _GNU_SOURCE
+#include <sched.h>
 #include <stdlib.h>
+#include <sys/time.h> // Ist nötig für die Ausführung auf dem Container
 #include <time.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <errno.h>
+#include <memory.h>
 
 int main(int argc, char const *argv[])
 {
@@ -24,6 +28,15 @@ int main(int argc, char const *argv[])
 
         const int PAGESIZE = 4096; // Im Container mit -> "getconf PAGESIZE"
         jump = PAGESIZE / sizeof(int);
+
+
+        cpu_set_t set;
+        CPU_ZERO(&set);
+        CPU_SET(9, &set);
+        if (sched_setaffinity(0, sizeof(set), &set)) {
+            perror("error setting sched_affinity");
+            _exit(EXIT_FAILURE);
+        }
 
         printf("Number of Pages %i\n", NUMPAGES);
         printf("Number of Iterations %i\n", counter);

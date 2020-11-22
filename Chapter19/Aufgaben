@@ -17,6 +17,89 @@ Aufgabe 3:
 - siehe tlb.sh
 - Man kann nicht nur 1 Trial und 1 Page machen -> Keine guten Messergebnisse (0 ns)
 
+an851goe@ct-bsys-ws20-18:~/z-drive/BSYS2020/Chapter19$ ./tlb.sh 1 20
+NEUE ITERATION
+1
+20
+Number of Pages 1
+Number of Iterations 20
+tlbAccessTime: 947
+
+One TLB-Access takes 76 ns
+NEUE ITERATION
+2
+40
+Number of Pages 2
+Number of Iterations 40
+tlbAccessTime: 7057
+
+One TLB-Access takes 514 ns
+NEUE ITERATION
+4
+80
+Number of Pages 4
+Number of Iterations 80
+tlbAccessTime: 24643
+
+One TLB-Access takes 951 ns
+NEUE ITERATION
+8
+160
+Number of Pages 8
+Number of Iterations 160
+tlbAccessTime: 68272
+
+One TLB-Access takes 1053 ns
+NEUE ITERATION
+16
+320
+Number of Pages 16
+Number of Iterations 320
+tlbAccessTime: 255804
+
+One TLB-Access takes 1684 ns
+NEUE ITERATION
+32
+640
+Number of Pages 32
+Number of Iterations 640
+tlbAccessTime: 938176
+
+One TLB-Access takes 2538 ns
+NEUE ITERATION
+64
+1280
+Number of Pages 64
+Number of Iterations 1280
+tlbAccessTime: 4239544
+
+One TLB-Access takes 5621 ns
+NEUE ITERATION
+128
+2560
+Number of Pages 128
+Number of Iterations 2560
+tlbAccessTime: 19847807
+
+One TLB-Access takes 10353 ns
+NEUE ITERATION
+256
+5120
+Number of Pages 256
+Number of Iterations 5120
+tlbAccessTime: 77871420
+
+One TLB-Access takes 18097 ns
+NEUE ITERATION
+512
+10240
+Number of Pages 512
+Number of Iterations 10240
+tlbAccessTime: 308554474
+
+One TLB-Access takes 33249 ns
+
+
 
 Aufgabe 4:
 
