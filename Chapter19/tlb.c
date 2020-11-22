@@ -29,18 +29,17 @@ int main(int argc, char const *argv[])
         printf("Number of Iterations %i\n", counter);
 
 
-        for (int k = 1; k < NUMPAGES + 1; k++) {
-
-            int* array = (int*) malloc((counter * NUMPAGES) * sizeof(int));
-
-            if (array == NULL) {
-                fprintf(stderr, "Error allocating memory: ");
-                exit(EXIT_FAILURE);
-            }
 
             long long totalTlbAccessTime = 0;
 
             for (int i = 0; i < counter; i++) {
+
+                int* array = (int*) malloc((counter * NUMPAGES) * sizeof(int));
+
+                if (array == NULL) {
+                    fprintf(stderr, "Error allocating memory: ");
+                    exit(EXIT_FAILURE);
+                }
 
                 for (int j = 0; j < NUMPAGES * jump; j += jump) {
 
@@ -69,18 +68,19 @@ int main(int argc, char const *argv[])
                         tlbAccessTime += (stopTLBAccess.tv_sec - startTLBAccess.tv_sec) +
                                         (stopTLBAccess.tv_nsec - startTLBAccess.tv_nsec);
                     }
+
                 }
-                totalTlbAccessTime += tlbAccessTime / k;
+                totalTlbAccessTime += tlbAccessTime / i;
+                free(array);
             }
+
 
             printf("tlbAccessTime: %ld\n", tlbAccessTime);
             unsigned long calcTime = (totalTlbAccessTime / counter);
             printf("\nOne TLB-Access takes %ld ns\n", calcTime);
 
-            free(array);
 
-        }
 
-        return 0;
     }
+    return 0;
 }
