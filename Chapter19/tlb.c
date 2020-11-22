@@ -11,12 +11,12 @@ int main(int argc, char const *argv[])
         return -1;
     }
     if (argc < 2) {
-        printf("No arguments given. Two Argument expected. \n Give your Number of Pages and the Number of Trials");
+        printf("No arguments given. Two Argument expected. \n Give your Number of Pages and the Number of Trials\n");
         return -1;
     }
     if (argc == 3) {
-        const unsigned long NUMPAGES = atoi(argv[1]);
-        const unsigned long counter = atoi(argv[2]);
+        const int NUMPAGES = atoi(argv[1]);
+        const int counter = atoi(argv[2]);
         const unsigned long billion = 1000000000; //Für die Umrechnung -> Sekunde zu Nanosekunde (1 Milliarde)
         unsigned long systemCallTime, loopTime;
         struct timespec startSystemCall, stopSystemCall;
@@ -25,8 +25,8 @@ int main(int argc, char const *argv[])
         const int PAGESIZE = 4096; // Im Container mit -> "getconf PAGESIZE"
 
 
-        printf("Number of Pages %ld\n", NUMPAGES);
-        printf("Number of Iterations %ld\n", counter);
+        printf("Number of Pages %i\n", NUMPAGES);
+        printf("Number of Iterations %i\n", counter);
 
         //-----------TLB Call--------------
         if (clock_gettime(CLOCK_MONOTONIC_RAW, &startSystemCall) < 0) { //CLOCK_REALTIME/CLOCK_MONOTONIC gehen auch
