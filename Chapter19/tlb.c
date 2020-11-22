@@ -28,8 +28,6 @@ int main(int argc, char const *argv[])
         printf("Number of Pages %i\n", NUMPAGES);
         printf("Number of Iterations %i\n", counter);
 
-
-
             long long totalTlbAccessTime = 0;
 
             for (int i = 1; i < counter; i++) {

@@ -11,5 +11,5 @@ do
     echo "$trials"
     ./tlb "$numPages" "$trials"
     numPages=$((numPages*2))
-    trials=$((numPages*2))
+    trials=$((trials*2))
 done
