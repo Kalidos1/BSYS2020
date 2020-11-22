@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
         const int NUMPAGES = atoi(argv[1]);
         const int counter = atoi(argv[2]);
         const unsigned long billion = 1000000000; //Für die Umrechnung -> Sekunde zu Nanosekunde (1 Milliarde)
-        unsigned long tlbAccessTime, loopTime;
+        unsigned long tlbAccessTime;
         struct timespec startTLBAccess, stopTLBAccess;
         int jump;
 
@@ -29,7 +29,7 @@ int main(int argc, char const *argv[])
         printf("Number of Iterations %i\n", counter);
 
 
-        for (size_t pageCounter = 1; pageCounter < NUMPAGES + 1; pageCounter++) {
+        for (int k = 1; k < NUMPAGES + 1; k++) {
 
             int* array = (int*) malloc((counter * NUMPAGES) * sizeof(int));
 
@@ -70,7 +70,7 @@ int main(int argc, char const *argv[])
                                         (stopTLBAccess.tv_nsec - startTLBAccess.tv_nsec);
                     }
                 }
-                totalTlbAccessTime += tlbAccessTime / pageCounter;
+                totalTlbAccessTime += tlbAccessTime / k;
             }
 
             printf("tlbAccessTime: %ld\n", tlbAccessTime);
