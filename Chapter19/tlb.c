@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
         unsigned long tlbAccessTime, loopTime;
         struct timespec startTLBAccess, stopTLBAccess;
         int jump;
-        int* array = (int*) malloc(counter * sizeof(int));
+        int* array = (int*) malloc((counter * NUMPAGES) * sizeof(int));
         const int PAGESIZE = 4096; // Im Container mit -> "getconf PAGESIZE"
 
 
