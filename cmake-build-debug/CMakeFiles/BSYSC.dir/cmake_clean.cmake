@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/BSYSC.dir/Chapter14/integerArrayFree.c.o"
   "CMakeFiles/BSYSC.dir/Chapter14/mallocFree.c.o"
   "CMakeFiles/BSYSC.dir/Chapter14/null.c.o"
+  "CMakeFiles/BSYSC.dir/Chapter19/tlb.c.o"
   "CMakeFiles/BSYSC.dir/Chapter5/Question1/ForkVariable.c.o"
   "CMakeFiles/BSYSC.dir/Chapter5/Question2/ForkOutput.c.o"
   "CMakeFiles/BSYSC.dir/Chapter5/Question3/ForkWithoutWait.c.o"

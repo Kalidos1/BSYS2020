@@ -1,0 +1,12 @@
+Questions:
+
+Aufgabe 1:
+
+- Die Funktion gettimeofday() kann Sekunden und Microsekunden der derzeitigen Zeit angeben
+- Eine Operation muss mindestens 1 - 10 Microsekunden lang laufen, damit man diese gescheit angeben kann
+
+
+Aufgabe 2:
+
+
+-

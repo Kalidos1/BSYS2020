@@ -278,6 +278,33 @@ Chapter14/null.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter14/null.c.s
 .PHONY : Chapter14/null.c.s
 
+Chapter19/tlb.o: Chapter19/tlb.c.o
+
+.PHONY : Chapter19/tlb.o
+
+# target to build an object file
+Chapter19/tlb.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter19/tlb.c.o
+.PHONY : Chapter19/tlb.c.o
+
+Chapter19/tlb.i: Chapter19/tlb.c.i
+
+.PHONY : Chapter19/tlb.i
+
+# target to preprocess a source file
+Chapter19/tlb.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter19/tlb.c.i
+.PHONY : Chapter19/tlb.c.i
+
+Chapter19/tlb.s: Chapter19/tlb.c.s
+
+.PHONY : Chapter19/tlb.s
+
+# target to generate assembly for a file
+Chapter19/tlb.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter19/tlb.c.s
+.PHONY : Chapter19/tlb.c.s
+
 Chapter5/Question1/ForkVariable.o: Chapter5/Question1/ForkVariable.c.o
 
 .PHONY : Chapter5/Question1/ForkVariable.o
@@ -599,6 +626,9 @@ help:
 	@echo "... Chapter14/null.o"
 	@echo "... Chapter14/null.i"
 	@echo "... Chapter14/null.s"
+	@echo "... Chapter19/tlb.o"
+	@echo "... Chapter19/tlb.i"
+	@echo "... Chapter19/tlb.s"
 	@echo "... Chapter5/Question1/ForkVariable.o"
 	@echo "... Chapter5/Question1/ForkVariable.i"
 	@echo "... Chapter5/Question1/ForkVariable.s"
