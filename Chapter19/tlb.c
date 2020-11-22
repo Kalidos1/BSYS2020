@@ -31,6 +31,7 @@ int main(int argc, char const *argv[])
         //-----------TLB Call--------------
         if (clock_gettime(CLOCK_MONOTONIC_RAW, &startTLBAccess) < 0) { //CLOCK_REALTIME/CLOCK_MONOTONIC gehen auch
             printf("Start-Clock failed\n");                                        // -> Alle ca. 500ns
+            free(array);
             exit(1);
         }
 
@@ -43,6 +44,7 @@ int main(int argc, char const *argv[])
 
         if (clock_gettime(CLOCK_MONOTONIC_RAW, &stopTLBAccess) < 0) {
             printf("Stop-Clock failed\n");
+            free(array);
             exit(1);
         }
 
@@ -52,6 +54,7 @@ int main(int argc, char const *argv[])
 
         if (clock_gettime(CLOCK_MONOTONIC_RAW, &startLoop) < 0) {
             printf("Start-Clock failed\n");
+            free(array);
             exit(1);
         }
 
@@ -60,6 +63,7 @@ int main(int argc, char const *argv[])
 
         if (clock_gettime(CLOCK_MONOTONIC_RAW, &stopLoop) < 0) {
             printf("Stop-Clock failed\n");
+            free(array);
             exit(1);
         }
 
@@ -89,6 +93,8 @@ int main(int argc, char const *argv[])
         unsigned long calcTime = (tlbAccessTime / counter) - (loopTime / counter);
         printf("\nOne TLB-Access takes %ld ns\n", calcTime);
 
+
+        free(array);
         return 0;
     }
 }
