@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
 
         cpu_set_t set;
         CPU_ZERO(&set);
-        CPU_SET(9, &set);
+        CPU_SET(0, &set);
         if (sched_setaffinity(0, sizeof(set), &set)) {
             perror("error setting sched_affinity");
             _exit(EXIT_FAILURE);
