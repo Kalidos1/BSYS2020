@@ -82,8 +82,9 @@ int main(int argc, char const *argv[])
                         tlbAccessTime += (stopTLBAccess.tv_sec - startTLBAccess.tv_sec) +
                                         (stopTLBAccess.tv_nsec - startTLBAccess.tv_nsec);
                     }
-                    totalTlbAccessTime += tlbAccessTime / j;
+
                 }
+                totalTlbAccessTime += tlbAccessTime / i;
                 free(array);
             }
 
