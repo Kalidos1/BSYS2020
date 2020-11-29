@@ -84,7 +84,7 @@ int main(int argc, char const *argv[])
                     }
 
                 }
-                totalTlbAccessTime += tlbAccessTime / i;
+                totalTlbAccessTime += tlbAccessTime / i; //könnte 0 sein
                 free(array);
             }
 
