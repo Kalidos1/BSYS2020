@@ -80,13 +80,291 @@ details on how it works, and what each column of output means.
 
 ______________________QUESTIONS___________________________
 
+FIELD DESCRIPTION FOR VM MODE
+   Procs
+       r: The number of runnable processes (running or waiting for run time).
+       b: The number of processes in uninterruptible sleep.
+
+   Memory
+       swpd: the amount of virtual memory used.
+       free: the amount of idle memory.
+       buff: the amount of memory used as buffers.
+       cache: the amount of memory used as cache.
+       inact: the amount of inactive memory.  (-a option)
+       active: the amount of active memory.  (-a option)
+
+   Swap
+       si: Amount of memory swapped in from disk (/s).
+       so: Amount of memory swapped to disk (/s).
+
+   IO
+       bi: Blocks received from a block device (blocks/s).
+       bo: Blocks sent to a block device (blocks/s).
+
+  System
+       in: The number of interrupts per second, including the clock.
+       cs: The number of context switches per second.
+
+   CPU
+       These are percentages of total CPU time.
+       us: Time spent running non-kernel code.  (user time, including nice time)
+       sy: Time spent running kernel code.  (system time)
+       id: Time spent idle.  Prior to Linux 2.5.41, this includes IO-wait time.
+       wa: Time spent waiting for IO.  Prior to Linux 2.5.41, included in idle.
+       st: Time stolen from a virtual machine.  Prior to Linux 2.6.11, unknown.
+
 
 Question 1:
 
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 2  0     61    176      0    576    0    0     0   172 3239 2856 12  0 88  0  0
+ 0  0     61    176      0    576    0    0     0     0 2249 3273  0  0 100  0  0
+ 6  0     61    176      0    576    0    0     0   152 3233 2747  6  0 94  0  0
+ 1  0     61    176      0    576    0    0   768    36 3219 4509  6  0 94  0  0
+ 5  0     61    176      0    576    0    0     0   172 2689 4073  0  0 100  0  0
+ 0  0     61    176      0    576    0    0     0   184 4217 3711 12  0 88  0  0
+ 2  0     61    176      0    576    0    0     0    68 2288 3633  0  0 100  0  0
+ 8  0     61    175      0    576    0    0     0   104 3133 3288  7  0 93  0  0
+ 0  0     61    176      0    576    0    0     0   112 2969 2881  6  0 94  0  0
+ 5  0     61    176      0    576    0    0     0     0 2036 2433  0  0 100  0  0
+ 4  0     61    176      0    576    0    0     0   220 3445 2982 12  0 88  0  0
+ 2  0     61    176      0    576    0    0     0   124 2819 3223  0  0 100  0  0
+ 3  0     61    173      0    576    0    0     0    32 2854 2606  7  0 93  0  0
+ 2  0     61    176      0    576    0    0     0   284 3164 2794  5  0 95  0  0
+ 4  0     61    176      0    576    0    0   768    32 4061 6244  0  0 100  0  0 -> Start von ./mem 1
+ 4  0     61    175      0    576    0    0     0   212 3032 3848 21  0 79  0  0
+ 3  0     61    175      0    576    0    0     0    36 4065 4110 25  0 75  0  0
+ 3  0     61    169      0    576    0    0     0    68 3120 3173 32  0 68  0  0
+ 8  0     61    175      0    576    0    0     0   232 2895 3150 30  0 70  0  0
+ 4  0     61    175      0    576    0    0     0   104 3391 2725 25  0 75  0  0
+ 2  0     61    175      0    576    0    0     0   152 3060 3170 37  0 63  0  0
+ 7  0     61    175      0    576    0    0     0   104 3150 2929 25  0 75  0  0
+ 4  0     61    167      0    576    0    0     0    68 3300 2680 34  0 66  0  0
+ 1  0     61    175      0    576    0    0     0    36 2463 2636 29  0 71  0  0
+ 9  0     61    175      0    576    0    0   768   244 4630 6920 25  0 75  0  0
+
+-> Man sieht einen sofortigen Anstieg von der CPU User TIme, von 0 - 12 Einheiten zu 21 - 37 Einheiten
+-> Dazu veringert sich die "IDLE" Time von der CPU was auch sinn macht
+-> Dazu sieht man auch in der Memory, dass manchmal "155 MB" noch frei sind und danach dann wieder "175 MB"
+
+-> Die Zahlen machen Sinn, da genau diese Zahl von der IDLE Time abgezogen wird und die benötigt wird für das Programm
+
+-> Bei mehreren Prozessen, nähert sich die User Time bei 50 an, und bleibt dabei auch wenn mehrere Prozesse hinzukommen
+
+Question 2:
+
+ 0  0     61    176      0    576    0    0     0   164 2366 2755 12  0 89  0  0
+ 9  0     61    176      0    576    0    0     0    32 2581 3296  0  0 100  0  0
+ 2  0     61    176      0    576    0    0     0    80 3345 3159 12  0 88  0  0 -> Start ./mem 1024
+ 3  0     61      0      0    565    0    0     0    56 2237 2942 11  0 89  0  0
+ 5  0     61      0      0    548    0    0     0   456 3663 3015 26  0 74  0  0
+ 4  0     64      9      0    500    0    2     0  2640 4011 3162 49  0 51  0  0
+ 8  0     66      0      0    471    0    2     0  2680 3199 3269 25  0 75  0  0
+ 4  0     70      7      0    430    0    4   820  4684 4716 6282 26  0 74  0  0
+ 1  0     74     20      0    390    7   10  8196 11056 5737 4041 47  0 53  0  0
+ 3  0     64      9      0    390   11    0 11728   140 3839 4909 24  0 76  0  0
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 6  0     64      5      0    390    0    0     0    68 3335 2751 26  0 74  0  0
+ 4  0     64     22      0    387    0    0     0    76 3055 3264 38  0 62  0  0
+ 6  0     64     22      0    387    0    0     0   216 2906 2857 25  0 75  0  0
+ 4  0     64      0      0    387    0    0     0    72 3173 2560 37  0 63  0  0
+ 2  0     64     22      0    387    0    0     0   132 2823 2904 26  0 74  0  0
+ 5  0     64     22      0    387    0    0     0   104 3191 2970 25  0 75  0  0
+ 6  0     64     22      0    387    0    0     0    88 3406 4232 38  0 62  0  0
+ 2  0     64     22      0    387    0    0   768   104 3519 4608 25  0 75  0  0
+ 4  0     64      0      0    387    0    0     0   136 3447 3596 37  0 63  0  0
+ 3  0     64     22      0    387    0    0    32   100 3801 3886 25  0 75  0  0
+ 4  0     64     22      0    387    0    0     0   136 2403 2567 25  0 75  0  0
+ 5  0     64     22      0    387    0    0     0   144 3685 3312 38  0 63  0  0
+ 2  0     64     22      0    387    0    0     0    36 2953 2865 25  0 75  0  0 -> Stop ./mem 1024
+ 6  0     63   1048      0    387    0    0   320   136 2564 2630 24  0 76  0  0
+ 2  0     63   1048      0    387    0    0     0    68 3543 3325  0  0 100  0  0
+ 2  0     63   1047      0    387    0    0     0   100 1987 2753  0  0 100  0  0
+ 6  0     63   1048      0    387    0    0   384   156 3589 4507 12  0 88  0  0
+
+-> Wenn das Programm gestartet wird, wird wie erwatet der Freie Speicher allokiert und free zeigt 0
+-> SWPD zeigt nur kleine unterschiede von 61 zu 74
+-> Der Cache Speicher verringert sich
+
+-> Nach dem man wieder das Programm schließt, sieht man bei Free eine deutlich höhere Menge, die dem Allokierten Speicher entspricht (1024)
+-> Dazu bleibt auch der Cache so klein wie davor
+
+-> Die Zahlen machen Sinn, vorallem beim Free, da nachdem man soviel allokiert hat, sich auch der Virtuelle Speicher erhöht, soviel wie man benutzt hat
+    1024 + 22 = 1048
+
+
+Question 3:
+
+cat /proc/meminfo:
+MemTotal:        2097152 kB -> 2GB
+MemFree:         1070648 kB -> 1GB
+MemAvailable:    1466572 kB -> 1,4GB
+
+-> ./mem 1024 -> Noch keine > 0 Werte
+-> ./mem 1500 -> Zeigt andere Werte als 0
+
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 5  0    150   1082      0     84    0    0   120   168 3352 3129 27  0 73  0  0
+ 3  0    150    622      0     84    0    0     0    60 3085 2734 26  0 74  0  0
+ 5  0    150    179      0     84    0    0     0    96 2831 2633 37  0 63  0  0
+ 8  0    194      0      0     79    0   44     0 45464 4857 3796 25  0 75  0  0
+ 2  0    304      0      0     75    0  107   240 109972 6825 2705 34  0 66  0  0
+ 4  0    406      0      0     67    0  101   776 104488 9300 6033 37  0 63  0  0
+ 4  0    494      0      0     63    0   83    16 86052 5908 3932 25  0 75  0  0
+ 4  0    603      0      0     59    0  108    84 111548 10281 3556 38  0 62  0  0
+ 3  0    637      0      0     57   42   58 43148 59736 12620 10474 28  0 72  0  0
+ 0  1    637      0      0     57   57   36 59212 37840 7273 9428 14  0 86  0  0
+ 4  0    653     11      0     57   62   60 63848 61920 10503 8587 28  0 72  0  0
+ 7  0    637      0      0     56   76   42 77968 43256 9071 9105 23  0 77  0  0
+ 5  0    637      0      0     56   58   47 59644 48172 6778 7668 17  0 83  0  0
+ 4  0    650      0      0     56   72   72 73876 74072 13030 8773 34  0 66  0  0
+ 4  1    637      0      0     56   76   51 78648 52672 8655 8250 23  0 77  0  0
+ 2  0    637      0      0     56   60   49 61736 51520 6547 7418 18  0 82  0  0
+ 3  0    657      0      0     55   67   74 69884 76536 14880 11873 36  0 64  0  0
+ 4  1    637      0      0     54   79   43 81244 44768 8234 9533 18  0 82  0  0
+ 2  0    636      0      0     54   60   48 62216 49804 7144 8994 17  0 83  0  0
+ 2  1    644      8      0     53   83   74 85480 76384 15199 9736 38  0 62  0  0
+
+-> ./mem 2000
+    allocating 2097152000 bytes (2000.00 MB)
+      number of integers in array: 524288000
+    loop 0 in 8384.12 ms (bandwidth: 238.55 MB/s)
+    loop 1 in 17242.88 ms (bandwidth: 115.99 MB/s)
+    loop 2 in 13150.02 ms (bandwidth: 152.09 MB/s)
+    loop 3 in 22236.67 ms (bandwidth: 89.94 MB/s)
+
+-> Die erste Schleife dauert erheblich länger als die Schleifen die danach auftreten (siehe oben)
+
+-> SWPD macht sinn mit ca. 640 MB, da dies + MemAvailable insgesamt unsere MemTotal sind
+-> Von den Schleifen her -> Die Zahlen ändern sich nicht sonderlich von der SI/SO her
 
 
 
+Question 4:
+
+ 3  0    529   1241      0     31    0    0   768    68 3821 5969 25  0 75  0  0
+ 5  0    529    771      0     31    0    0     4   168 3479 3299 35  0 65  0  0
+ 3  0    529    334      0     31    0    0     0    96 4072 4537 27  0 73  0  0
+ 3  0    540      0      0     25    0   11     0 11936 2838 2576 25  0 75  0  0
+ 6  0    624      0      0     25   20  104 27020 107044 16389 4890 45  0 55  0  0
+ 3  0    606      0      0     25   63   45 65080 46760 6679 7563 19  0 81  0  0
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 2  1    606      0      0     25   50   50 52024 52260 4733 6110 17  0 83  0  0
+ 5  0    618     12      0     24   69   82 71268 84140 15399 8113 39  0 61  0  0
+ 4  0    605      0      0     24   62   49 64228 50600 5733 7106 18  0 82  0  0
+ 8  0    608      0      0     24   56   59 58088 61348 5901 6330 20  0 80  0  0
+ 3  0    604      0      0     23   75   71 77940 73588 13954 11227 35  0 65  0  0
+ 2  0    604      0      0     22   55   54 56364 55736 5561 6764 18  0 82  0  0
+ 5  1    618      0      0     22   56   70 57492 72512 10043 8664 26  0 74  0  0
+ 3  0    603      0      0     22   78   62 79984 63992 11192 8204 30  0 70  0  0
+ 2  1    603      0      0     22   53   52 54468 54240 5317 6653 18  0 82  0  0
+ 6  0    622      0      0     22   63   82 65560 85284 10613 7044 31  0 69  0  0
+ 2  0    603      0      0     22   81   62 83844 64216 10175 8359 29  0 71  0  0
+ 5  1    603      0      0     22   55   54 56536 56128 5091 6695 19  0 81  0  0
+ 8  1    620     13      0     22   65   81 66760 83792 11715 7004 32  0 68  0  0
+ 2  1    603      0      0     22   75   57 76868 59320 9446 8375 27  0 73  0  0
+ 4  0    605      0      0     24   52   54 56496 55676 6431 8850 18  0 82  0  0
+ 3  0    616      0      0     24   67   78 69512 80780 12804 8089 35  0 65  0  0
+
+-> IO:
+    -> Reinkommende und gesendete Blocks werden sehr viel
+    -> Mehr als 50000/s
+-> SYSTEM:
+    -> Interupts(IN) und Context Switches(CS) werden auch mehr, wobei diese hier nur verdoppelt werden
+
+-> CPU:
+    Idle Time und User Time bleiben in etwa gleich, und zeigen die Zahlen vor, als würde ein Prozess belegt sein
 
 
+
+Question 5:
+
+./mem 1024
+allocating 1073741824 bytes (1024.00 MB)
+  number of integers in array: 268435456
+loop 0 in 2247.85 ms (bandwidth: 455.55 MB/s)
+loop 1 in 1137.91 ms (bandwidth: 899.89 MB/s)
+loop 2 in 1144.10 ms (bandwidth: 895.02 MB/s)
+loop 3 in 1136.81 ms (bandwidth: 900.77 MB/s)
+loop 4 in 1143.62 ms (bandwidth: 895.41 MB/s)
+loop 5 in 1133.65 ms (bandwidth: 903.27 MB/s)
+loop 6 in 1146.77 ms (bandwidth: 892.94 MB/s)
+loop 7 in 1133.72 ms (bandwidth: 903.22 MB/s)
+loop 8 in 1144.52 ms (bandwidth: 894.70 MB/s)
+loop 9 in 1134.07 ms (bandwidth: 902.94 MB/s)
+loop 10 in 1144.16 ms (bandwidth: 894.98 MB/s)
+loop 11 in 1134.17 ms (bandwidth: 902.87 MB/s)
+loop 12 in 1147.39 ms (bandwidth: 892.46 MB/s)
+loop 13 in 1139.73 ms (bandwidth: 898.46 MB/s)
+loop 14 in 1144.70 ms (bandwidth: 894.56 MB/s)
+loop 15 in 1137.32 ms (bandwidth: 900.36 MB/s)
+
+-> Erste Loop in 2245 ms, danach alle Loops mit 1137 ms -> Halb soviel wie davor
+-> Bandwidth Number werden immer schneller, d.h. Loops werden auch schneller
+
+./mem 4096
+allocating 4294967296 bytes (4096.00 MB)
+  number of integers in array: 1073741824
+loop 0 in 26840.44 ms (bandwidth: 152.61 MB/s)
+loop 1 in 73691.21 ms (bandwidth: 55.58 MB/s)
+loop 2 in 67958.96 ms (bandwidth: 60.27 MB/s)
+
+-> Erste Loop dauert 26000 ms -> Danach alle Loops ca. 70000 ms
+-> Die Bandwith Numbers werden in dem Fall langsamer, d.h. auch die Loop dauert Länger
+
+-> Die Performance ist sehr viel Besser, wenn alles in die Memory reinpasst, anstatt die ganze Zeit zu swappen
+    Siehe Tabellen
+
+-> Graph:
+    -> Je mehr Memory allokiert wird, desto geringer wird die Bandwith (Von links oben nach rechts unten)
+
+-> Wenn alles reinpasst:
+    Erste Loop langsamer als die anderen
+-> Wenn zu viel Memory:
+    Erste Loop schneller als die anderen
+
+
+Question 6:
+cat /proc/swaps
+Filename				Type		Size	Used	Priority
+none                    virtual		3145728	2643460	0
+
+
+ 5  0   1864      0      0     42    0  116     0 120036 16355 4595 45  0 55  0  0
+ 5  0   1944      0      0     41    0   80     0 83044 4026 2975 25  0 75  0  0
+ 3  0   2033      0      0     40    0   88     0 90628 7006 3620 29  0 71  0  0
+ 2  0   2142      0      0     39    0  108    64 111508 13823 2780 42  0 58  0  0
+ 4  0   2222      0      0     39    0   80     0 81964 4108 2592 25  0 75  0  0
+ 5  0   2317      0      0     39    0   95     4 98120 8111 3547 32  0 68  0  0
+ 4  0   2422      0      0     38    0  104     0 107272 12116 3257 40  0 60  0  0
+ 2  0   2501      0      0     38    0   79     0 81520 4386 3047 25  0 75  0  0
+ 7  0   2601      0      0     37    0   99   768 102184 9878 4677 35  0 66  0  0
+ 5  0   2703      0      0     37    0  101     0 104184 12050 4741 38  0 62  0  0
+ 3  0   2782      0      0     37    0   79     0 81860 5125 4673 24  0 76  0  0
+ 6  0   2887      0      0     36    0  104     4 107088 10254 3108 36  0 64  0  0
+ 5  0   2985      0      0     37    0   98   640 100924 11452 4207 37  0 63  0  0
+ 1  0   3063      0      0     37    0   78     0 80168 4095 2786 25  0 75  0  0 -> Prozess "killed"
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 1  2    491   1882      0     29    0   28 38924 29568 4853 4966 33  0 67  0  0
+ 2  0    491   1883      0     35    0    0  5964    36 3894 3768 11  0 89  0  0
+ 3  0    491   1883      0     35    0    0    16   232 2468 3048  0  0 100  0  0
+
+-> Bei ca. 3000 MB SWPD schlägt die Memory Allokierung fehl
+-> Der Prozess wird "gekilled"
+
+
+Question 7:
+
+-> "Sadly, when it comes to raw speed, a single SSD is always going to win out against a RAID 0 hard drive setup.
+Even the fastest, most expensive 10,000 RPM SATA III consumer hard drive only tops out at 200MB/s.
+In theory. So two of them in RAID0 would only manage a little under twice that"
+
+-> SATA III SSD 600MB/s
+-> NVME SSD 2000MB/s
 
 
