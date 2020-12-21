@@ -15,13 +15,11 @@
 
 #include "mythreads.h"
 
-const int NUMCPUS = 4;
-
 typedef struct __counter_t {
     int global;
     pthread_mutex_t glock;
-    int local[NUMCPUS];
-    pthread_mutex_t llock[NUMCPUS];
+    int local[4];
+    pthread_mutex_t llock[4];
     int threshold;
 } counter_t;
 
@@ -32,7 +30,7 @@ void init(counter_t *c, int threshold) {
     c->global = 0;
     pthread_mutex_init(&c->glock, NULL);
     int i;
-    for (i = 0; i < NUMCPUS; i++) {
+    for (i = 0; i < 4; i++) {
         c->local[i] = 0;
         pthread_mutex_init(&c->llock[i], NULL);
     }
