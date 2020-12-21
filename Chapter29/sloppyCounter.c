@@ -15,41 +15,58 @@
 
 #include "mythreads.h"
 
+const int NUMCPUS = 4;
+
 typedef struct __counter_t {
-    int value;
-    pthread_mutex_t lock;
+    int global;
+    pthread_mutex_t glock;
+    int local[NUMCPUS];
+    pthread_mutex_t llock[NUMCPUS];
+    int threshold;
 } counter_t;
 
-void init(counter_t *c) {
-    c->value = 0;
-    Pthread_mutex_init((pthread_mutex_t *) &c->lock, NULL);
+// init: record threshold, init locks, init values
+//       of all local counts and global count
+void init(counter_t *c, int threshold) {
+    c->threshold = threshold;
+    c->global = 0;
+    pthread_mutex_init(&c->glock, NULL);
+    int i;
+    for (i = 0; i < NUMCPUS; i++) {
+        c->local[i] = 0;
+        pthread_mutex_init(&c->llock[i], NULL);
+    }
 }
 
-void increment(counter_t *c) {
-    Pthread_mutex_lock(&c->lock);
-    c->value++;
-    Pthread_mutex_unlock(&c->lock);
+// update: usually, just grab local lock and update local amount
+//         once local count has risen by ’threshold’, grab global
+// lock and transfer local values to it
+void update(counter_t *c, int threadID, int amt) {
+    pthread_mutex_lock(&c->llock[threadID]);
+    c->local[threadID] += amt;   // assumes amt > 0
+    if (c->local[threadID] >= c->threshold) { // transfer to global
+        pthread_mutex_lock(&c->glock);
+        c->global += c->local[threadID];
+        pthread_mutex_unlock(&c->glock);
+        c->local[threadID] = 0;
+    }
+    pthread_mutex_unlock(&c->llock[threadID]);
 }
-
-void decrement(counter_t *c) {
-    Pthread_mutex_lock(&c->lock);
-    c->value --;
-    Pthread_mutex_unlock(&c->lock);
-}
-
+// get: just return global amount (which may not be perfect)
 int get(counter_t *c) {
-    Pthread_mutex_lock(&c->lock);
-    int rc = c->value;
-    Pthread_mutex_unlock(&c->lock);
-    return rc;
+    pthread_mutex_lock(&c->glock);
+    int val = c->global;
+    pthread_mutex_unlock(&c->glock);
+    return val; // only approximate!
 }
+
 
 counter_t c;
 const unsigned long billion = 1000000000; //Für die Umrechnung -> Sekunde zu Nanosekunde (1 Milliarde)
 unsigned long counterAccessTime = 0;
 struct timespec startCounterAccess, stopCounterAccess;
 
-void* worker(void* arg) {
+void *worker(void *arg) {
     for (int i = 0; i < (long long) arg; i++) {
         // Lock zwischen den Zeit-Messungen ??????
         if (clock_gettime(CLOCK_MONOTONIC_RAW, &startCounterAccess) < 0) { //CLOCK_REALTIME/CLOCK_MONOTONIC gehen auch
@@ -57,7 +74,7 @@ void* worker(void* arg) {
             exit(1);
         }
 
-        increment(&c);
+        update(&c, (unsigned long int) pthread_self() ,1);
         if (clock_gettime(CLOCK_MONOTONIC_RAW, &stopCounterAccess) < 0) {
             printf("Stop-Clock failed\n");
             exit(1);
@@ -88,21 +105,21 @@ int main(int argc, char const *argv[]) {
     const int increment = atoi(argv[1]);
     printf("Number of Increments by each Thread:  %i\n", increment);
 
-    init(&c);
+    init(&c, 2);
 
-    pthread_t p1, p2, p3, p4, p5;
+    pthread_t p1, p2, p3, p4;
     Pthread_create(&p1, NULL, worker, (void *) (long long) increment);
     Pthread_create(&p2, NULL, worker, (void *) (long long) increment);
     Pthread_create(&p3, NULL, worker, (void *) (long long) increment);
     Pthread_create(&p4, NULL, worker, (void *) (long long) increment);
-    Pthread_create(&p5, NULL, worker, (void *) (long long) increment);
+    //Pthread_create(&p5, NULL, worker, (void *) (long long) increment);
 
 
     Pthread_join(p1, NULL);
     Pthread_join(p2, NULL);
     Pthread_join(p3, NULL);
     Pthread_join(p4, NULL);
-    Pthread_join(p5, NULL);
+    //Pthread_join(p5, NULL);
 
     printf("Counter is: %d\n", get(&c));
     double accessTimeSeconds = (double) counterAccessTime / 1e9;

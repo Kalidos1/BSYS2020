@@ -39,3 +39,5 @@ counterAccessTime: 948980 ns
 counterAccessTime in Sekunden: 0.000949 s
 
 -> Genau eigentlich die Zeit die der Thread braucht weniger
+
+-> Die Nummer der CPUS hält den TImer nicht sonderlich auf
