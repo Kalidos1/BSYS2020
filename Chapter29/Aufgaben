@@ -1,0 +1,16 @@
+Questions:
+
+Aufgabe 1:
+
+- Die Funktion gettimeofday() kann Sekunden und Microsekunden der derzeitigen Zeit angeben
+- Eine Operation muss mindestens 1 - 10 Microsekunden lang laufen, damit man diese gescheit angeben kann (tv_usec -> Kleinste Einheit die man mit gettimeofday() angeben kann)
+
+- rdtsc() -> Counts the number of Cycles since last reset
+(Funktioniert nicht sehr gut mit MultiThreading, multiple CPU´s) -> TimeStamp ist nicht synchronisiert bei mehreren CPU´s
+
+
+Aufgabe 2:
+
+// Speziell für unseren Container -> //CPU 4,7-8,11 sind Möglich -> "cat /sys/fs/cgroup/cpuset/cpuset.cpus"
+-> Es sind insgesmt 4 CPUs auf dem System vorhanden
+

@@ -305,6 +305,33 @@ Chapter19/tlb.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter19/tlb.c.s
 .PHONY : Chapter19/tlb.c.s
 
+Chapter29/concurrentCounter.o: Chapter29/concurrentCounter.c.o
+
+.PHONY : Chapter29/concurrentCounter.o
+
+# target to build an object file
+Chapter29/concurrentCounter.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.o
+.PHONY : Chapter29/concurrentCounter.c.o
+
+Chapter29/concurrentCounter.i: Chapter29/concurrentCounter.c.i
+
+.PHONY : Chapter29/concurrentCounter.i
+
+# target to preprocess a source file
+Chapter29/concurrentCounter.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.i
+.PHONY : Chapter29/concurrentCounter.c.i
+
+Chapter29/concurrentCounter.s: Chapter29/concurrentCounter.c.s
+
+.PHONY : Chapter29/concurrentCounter.s
+
+# target to generate assembly for a file
+Chapter29/concurrentCounter.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.s
+.PHONY : Chapter29/concurrentCounter.c.s
+
 Chapter5/Question1/ForkVariable.o: Chapter5/Question1/ForkVariable.c.o
 
 .PHONY : Chapter5/Question1/ForkVariable.o
@@ -629,6 +656,9 @@ help:
 	@echo "... Chapter19/tlb.o"
 	@echo "... Chapter19/tlb.i"
 	@echo "... Chapter19/tlb.s"
+	@echo "... Chapter29/concurrentCounter.o"
+	@echo "... Chapter29/concurrentCounter.i"
+	@echo "... Chapter29/concurrentCounter.s"
 	@echo "... Chapter5/Question1/ForkVariable.o"
 	@echo "... Chapter5/Question1/ForkVariable.i"
 	@echo "... Chapter5/Question1/ForkVariable.s"

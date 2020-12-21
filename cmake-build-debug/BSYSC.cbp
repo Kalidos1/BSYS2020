@@ -96,6 +96,9 @@
 		<Unit filename="/Users/andre/CLionProjects/BSYSC/Chapter19/tlb.c">
 			<Option target="BSYSC"/>
 		</Unit>
+		<Unit filename="/Users/andre/CLionProjects/BSYSC/Chapter29/concurrentCounter.c">
+			<Option target="BSYSC"/>
+		</Unit>
 		<Unit filename="/Users/andre/CLionProjects/BSYSC/Chapter5/Question1/ForkVariable.c">
 			<Option target="BSYSC"/>
 		</Unit>

@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/andre/CLionProjects/BSYSC/Chapter14/mallocFree.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter14/mallocFree.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter14/null.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter14/null.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter19/tlb.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter19/tlb.c.o"
+  "/Users/andre/CLionProjects/BSYSC/Chapter29/concurrentCounter.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter5/Question1/ForkVariable.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter5/Question1/ForkVariable.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter5/Question2/ForkOutput.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter5/Question2/ForkOutput.c.o"
   "/Users/andre/CLionProjects/BSYSC/Chapter5/Question3/ForkWithoutWait.c" "/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles/BSYSC.dir/Chapter5/Question3/ForkWithoutWait.c.o"

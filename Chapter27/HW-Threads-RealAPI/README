@@ -41,7 +41,7 @@ With these programs, you can now answer the questions in the textbook.
 ___________________________QUESTIONS______________________
 
 
-Question 1:
+Question 1: (main-race.c)
 
 - Helgrind zeigt die richtigen Lines of Code -> at 0x109497: worker (main-race.c:8)
                                              -> at 0x1094D9: main (main-race.c:15)
@@ -52,7 +52,7 @@ Question 1:
 - siehe Screenshot
 
 
-Question 2:
+Question 2: (main-race.c)
 
 Removing one Line:
 - Zeigt keine Fehler an -> Programm läuft durch
@@ -63,20 +63,20 @@ Lock around one:
 Lock around both:
 - Zeigt keine Fehler an -> Die Locks verhindern das Data Race
 
-Question 3:
+Question 3: (main-deadlock.c)
 
 - Beide Threads werden gestartet und der erste Thread holt sich Lock 1
 -> Der 2. Thread holt sich Lock 2 -> Danach wollen beide Threads das jeweils andere Lock holen,
 jedoch können sie es nicht, da keiner von beiden das Lock freigeben kann
 -> Dann können beide nicht weiterverfahren und sind festgehalten
 
-Question 4:
+Question 4: (main-deadlock.c)
 
 - Helgrind zeigt mehrere Errors bezüglich Inkorrekte Lock Order
 - siehe Screenshot
 
 
-Question 5:
+Question 5: (main-deadlock-global.c)
 
 - Dieses Programm hat nicht den selben Fehler wie das Programm davor, da ein Thread erst das Lock g erhält und dann fortfährt
 -> Dies führt dazu, dass derr 2. Thread erst wartet bis er das Lock g erhalten kann und dann mit dem Programm fortfährt,
@@ -86,29 +86,29 @@ wobei hier dann keine Lock Fehler erscheinen
 - Helgrind zeigt hier jedoch die selben Errors wie davor -> Helgrind zeigt nicht immer alle Lösungen an
 
 
-Question 6:
+Question 6: (main-signal.c)
 
 - Durch die While-Schleife wartet der Main Thread auf den Child-Prozess, jedoch wird durch die While Schleife die ganze Zeit geprüft ob die Zahl schon geändert ist
 - Dazu braucht es sehr viele CPU-Zyklen die er Thread checken muss, bevor er weiter verfahren kann
 -> Wenn der Child Prozess lange benötigt werden 1. unnötige Resourcen verbraucht indem man die ganze Zeit abfrägt
 und 2. während dieser Abfrage kann der eine Prozess nichts machen, was zu einer Verschwendung der Resourcen führt
+-> Dazu ist ein Deadlock möglich,
 
 
-
-Question 7:
+Question 7: (main-signal.c)
 
 - Helgrind zeigt ein mögliches Daten Race, was eig. garnicht vorkommen kann, da ich in dem Main Thread die Variable nur lese und nicht schreibe
 -> Es ist möglicherweise nicht korrekt was Helgrind anzeigt
 
 
-Question 8:
+Question 8: (main-signal-cv.c)
 
 - Dieser Code arbeitet mit Condition Variablen und Locks
 -> Dadurch ist die Korrektheit des Codes gegeben und auch die Performance ist hierbei besser, da der Thread der wartet in keiner Dauerschleife auf den anderen Wartet,
 sondern sleept bis der anderer Thread das Signal zum weitergeben sendet
 
 
-Question 9:
+Question 9: (main-signal-cv.c)
 
 -> Helgrind zeigt keine Errors
 
