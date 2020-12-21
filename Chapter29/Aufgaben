@@ -14,3 +14,28 @@ Aufgabe 2:
 // Speziell für unseren Container -> //CPU 4,7-8,11 sind Möglich -> "cat /sys/fs/cgroup/cpuset/cpuset.cpus"
 -> Es sind insgesmt 4 CPUs auf dem System vorhanden
 
+-> 4 Threads (MacOS -> 8 CPUs)
+(venv) ➜  Chapter29 git:(master) ✗ ./concurrentCounter 1000
+Number of Increments by each Thread:  1000
+Counter is: 4000
+counterAccessTime: 1074295 ns
+counterAccessTime in Sekunden: 0.001074 s
+(venv) ➜  Chapter29 git:(master) ✗ ./concurrentCounter 1000
+Number of Increments by each Thread:  1000
+Counter is: 4000
+counterAccessTime: 1235954 ns
+counterAccessTime in Sekunden: 0.001236 s
+
+-> 3 Threads (MacOS)
+(venv) ➜  Chapter29 git:(master) ✗ ./concurrentCounter 1000
+Number of Increments by each Thread:  1000
+Counter is: 3000
+counterAccessTime: 808983 ns
+counterAccessTime in Sekunden: 0.000809 s
+(venv) ➜  Chapter29 git:(master) ✗ ./concurrentCounter 1000
+Number of Increments by each Thread:  1000
+Counter is: 3000
+counterAccessTime: 948980 ns
+counterAccessTime in Sekunden: 0.000949 s
+
+-> Genau eigentlich die Zeit die der Thread braucht weniger

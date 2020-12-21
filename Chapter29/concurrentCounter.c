@@ -90,17 +90,19 @@ int main(int argc, char const *argv[]) {
 
     init(&c);
 
-    pthread_t p1, p2, p3, p4;
+    pthread_t p1, p2, p3, p4, p5;
     Pthread_create(&p1, NULL, worker, (void *) (long long) increment);
     Pthread_create(&p2, NULL, worker, (void *) (long long) increment);
     Pthread_create(&p3, NULL, worker, (void *) (long long) increment);
     Pthread_create(&p4, NULL, worker, (void *) (long long) increment);
+    Pthread_create(&p5, NULL, worker, (void *) (long long) increment);
 
 
     Pthread_join(p1, NULL);
     Pthread_join(p2, NULL);
     Pthread_join(p3, NULL);
     Pthread_join(p4, NULL);
+    Pthread_join(p5, NULL);
 
     get(&c);
 
