@@ -12,10 +12,13 @@
 #include <errno.h>
 #include <memory.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/syscall.h>
 
 #include "mythreads.h"
 
-typedef struct __counter_t {
+typedef struct __counterSloppy_t {
     int global;
     pthread_mutex_t glock;
     int local[4];
@@ -59,33 +62,34 @@ int get(counter_t *c) {
 }
 
 
-counter_t c;
+counter_t cSloppy;
 const unsigned long billion = 1000000000; //Für die Umrechnung -> Sekunde zu Nanosekunde (1 Milliarde)
-unsigned long counterAccessTime = 0;
-struct timespec startCounterAccess, stopCounterAccess;
+unsigned long sloppyCounterAccessTime = 0;
+struct timespec startSloppyAccess, stopSloppyAccess;
 
 void *worker(void *arg) {
     for (int i = 0; i < (long long) arg; i++) {
+        pid_t x = syscall(SYS_gettid);
         // Lock zwischen den Zeit-Messungen ??????
-        if (clock_gettime(CLOCK_MONOTONIC_RAW, &startCounterAccess) < 0) { //CLOCK_REALTIME/CLOCK_MONOTONIC gehen auch
+        if (clock_gettime(CLOCK_MONOTONIC_RAW, &startSloppyAccess) < 0) { //CLOCK_REALTIME/CLOCK_MONOTONIC gehen auch
             printf("Start-Clock failed\n");
             exit(1);
         }
 
-        update(&c, (unsigned long int) pthread_self() ,1);
-        if (clock_gettime(CLOCK_MONOTONIC_RAW, &stopCounterAccess) < 0) {
+        update(&cSloppy, x, 1);
+        if (clock_gettime(CLOCK_MONOTONIC_RAW, &stopSloppyAccess) < 0) {
             printf("Stop-Clock failed\n");
             exit(1);
         }
         //----------Access Time--------------
         // -> Umrechnung, falls erster Zeitpunkt < zweiter Zeitpunkt
-        if (startCounterAccess.tv_nsec > stopCounterAccess.tv_nsec) {
-            counterAccessTime += (((stopCounterAccess.tv_sec - 1) - startCounterAccess.tv_sec) * billion)
-                                 + ((stopCounterAccess.tv_nsec + billion) - startCounterAccess.tv_nsec);
+        if (startSloppyAccess.tv_nsec > stopSloppyAccess.tv_nsec) {
+            sloppyCounterAccessTime += (((stopSloppyAccess.tv_sec - 1) - startSloppyAccess.tv_sec) * billion)
+                                 + ((stopSloppyAccess.tv_nsec + billion) - startSloppyAccess.tv_nsec);
         } else {
             // Berechnung der Zeit
-            counterAccessTime += (stopCounterAccess.tv_sec - startCounterAccess.tv_sec) +
-                                 (stopCounterAccess.tv_nsec - startCounterAccess.tv_nsec);
+            sloppyCounterAccessTime += (stopSloppyAccess.tv_sec - startSloppyAccess.tv_sec) +
+                                 (stopSloppyAccess.tv_nsec - startSloppyAccess.tv_nsec);
         }
     }
     return NULL;
@@ -103,7 +107,7 @@ int main(int argc, char const *argv[]) {
     const int increment = atoi(argv[1]);
     printf("Number of Increments by each Thread:  %i\n", increment);
 
-    init(&c, 2);
+    init(&cSloppy, 1024);
 
     pthread_t p1, p2, p3, p4;
     Pthread_create(&p1, NULL, worker, (void *) (long long) increment);
@@ -115,15 +119,15 @@ int main(int argc, char const *argv[]) {
 
     Pthread_join(p1, NULL);
     Pthread_join(p2, NULL);
-    Pthread_join(p3, NULL);
-    Pthread_join(p4, NULL);
+    //Pthread_join(p3, NULL);
+    //Pthread_join(p4, NULL);
     //Pthread_join(p5, NULL);
 
-    printf("Counter is: %d\n", get(&c));
-    double accessTimeSeconds = (double) counterAccessTime / 1e9;
-    printf("counterAccessTime: %ld ns\n", counterAccessTime);
-    printf("counterAccessTime in Sekunden: %f s\n", (double) accessTimeSeconds);
-    //unsigned long calcTime = (counterAccessTime / 4);
+    printf("Counter is: %d\n", get(&cSloppy));
+    double accessTimeSeconds = (double) sloppyCounterAccessTime / 1e9;
+    printf("sloppyCounterAccessTime: %ld ns\n", sloppyCounterAccessTime);
+    printf("sloppyCounterAccessTime in Sekunden: %f s\n", (double) accessTimeSeconds);
+    //unsigned long calcTime = (sloppyCounterAccessTime / 4);
     //printf("\nOne Counter-Access takes %ld ns\n", calcTime);
 
     return 0;

@@ -41,3 +41,37 @@ counterAccessTime in Sekunden: 0.000949 s
 -> Genau eigentlich die Zeit die der Thread braucht weniger
 
 -> Die Nummer der CPUS hält den TImer nicht sonderlich auf
+
+
+Aufgabe 3:
+
+S = 1 -> Time: ca. 800000 ns
+S = 2 -> TIme ca. 700000 ns
+S = 4 -> Time ca. 500000 ns
+S = 128 -> TIme ca. 400000ns
+
+
+-> Es ist nicht ganz wie im Buch, man erkennt aber die Zeit Veringerrung durch den Threshold
+-> Die Zeit erhöht sich auch nur ein Bisschen pro Thread -> Zeit bleibt ungefähr bei 0 s
+
+-> Bei dem normalen Counter ging es bei mehr Threads schnell auf höhere Zahlen
+
+
+Aufgabe 4:
+
+TODO
+
+
+Aufgabe 5:
+
+
+TODO
+
+
+Aufgabe 6:
+
+
+TODO
+
+
+
