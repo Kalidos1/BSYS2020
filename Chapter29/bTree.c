@@ -234,7 +234,7 @@ int main(int argc, char const *argv[]) {
             Pthread_join(thread[i], NULL);
         }
 
-        printf("Counter is: %d\n", search(increment, &ch, root));
+        //printf("Counter is: %d\n", search(increment, &ch, root));
         double accessTimeSeconds = (double) sloppyCounterAccessTime / 1e9;
         printf("sloppyCounterAccessTime: %ld ns\n", sloppyCounterAccessTime);
         printf("sloppyCounterAccessTime in Sekunden: %f s\n", (double) accessTimeSeconds);
