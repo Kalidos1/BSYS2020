@@ -311,6 +311,45 @@ CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/andre/CLionProjects/BSYSC/Chapter29/concurrentCounter.c -o CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.s
 
+CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.o: CMakeFiles/BSYSC.dir/flags.make
+CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.o: ../Chapter29/linkedList.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.o   -c /Users/andre/CLionProjects/BSYSC/Chapter29/linkedList.c
+
+CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/andre/CLionProjects/BSYSC/Chapter29/linkedList.c > CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.i
+
+CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/andre/CLionProjects/BSYSC/Chapter29/linkedList.c -o CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.s
+
+CMakeFiles/BSYSC.dir/Chapter29/hashList.c.o: CMakeFiles/BSYSC.dir/flags.make
+CMakeFiles/BSYSC.dir/Chapter29/hashList.c.o: ../Chapter29/hashList.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/BSYSC.dir/Chapter29/hashList.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BSYSC.dir/Chapter29/hashList.c.o   -c /Users/andre/CLionProjects/BSYSC/Chapter29/hashList.c
+
+CMakeFiles/BSYSC.dir/Chapter29/hashList.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BSYSC.dir/Chapter29/hashList.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/andre/CLionProjects/BSYSC/Chapter29/hashList.c > CMakeFiles/BSYSC.dir/Chapter29/hashList.c.i
+
+CMakeFiles/BSYSC.dir/Chapter29/hashList.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BSYSC.dir/Chapter29/hashList.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/andre/CLionProjects/BSYSC/Chapter29/hashList.c -o CMakeFiles/BSYSC.dir/Chapter29/hashList.c.s
+
+CMakeFiles/BSYSC.dir/Chapter29/bTree.c.o: CMakeFiles/BSYSC.dir/flags.make
+CMakeFiles/BSYSC.dir/Chapter29/bTree.c.o: ../Chapter29/bTree.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/BSYSC.dir/Chapter29/bTree.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/BSYSC.dir/Chapter29/bTree.c.o   -c /Users/andre/CLionProjects/BSYSC/Chapter29/bTree.c
+
+CMakeFiles/BSYSC.dir/Chapter29/bTree.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BSYSC.dir/Chapter29/bTree.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/andre/CLionProjects/BSYSC/Chapter29/bTree.c > CMakeFiles/BSYSC.dir/Chapter29/bTree.c.i
+
+CMakeFiles/BSYSC.dir/Chapter29/bTree.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BSYSC.dir/Chapter29/bTree.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/andre/CLionProjects/BSYSC/Chapter29/bTree.c -o CMakeFiles/BSYSC.dir/Chapter29/bTree.c.s
+
 # Object files for target BSYSC
 BSYSC_OBJECTS = \
 "CMakeFiles/BSYSC.dir/main.c.o" \
@@ -330,7 +369,10 @@ BSYSC_OBJECTS = \
 "CMakeFiles/BSYSC.dir/Chapter14/integerArray.c.o" \
 "CMakeFiles/BSYSC.dir/Chapter14/integerArrayFree.c.o" \
 "CMakeFiles/BSYSC.dir/Chapter19/tlb.c.o" \
-"CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.o"
+"CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.o" \
+"CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.o" \
+"CMakeFiles/BSYSC.dir/Chapter29/hashList.c.o" \
+"CMakeFiles/BSYSC.dir/Chapter29/bTree.c.o"
 
 # External object files for target BSYSC
 BSYSC_EXTERNAL_OBJECTS =
@@ -353,9 +395,12 @@ BSYSC: CMakeFiles/BSYSC.dir/Chapter14/integerArray.c.o
 BSYSC: CMakeFiles/BSYSC.dir/Chapter14/integerArrayFree.c.o
 BSYSC: CMakeFiles/BSYSC.dir/Chapter19/tlb.c.o
 BSYSC: CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.o
+BSYSC: CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.o
+BSYSC: CMakeFiles/BSYSC.dir/Chapter29/hashList.c.o
+BSYSC: CMakeFiles/BSYSC.dir/Chapter29/bTree.c.o
 BSYSC: CMakeFiles/BSYSC.dir/build.make
 BSYSC: CMakeFiles/BSYSC.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking C executable BSYSC"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/andre/CLionProjects/BSYSC/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking C executable BSYSC"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/BSYSC.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

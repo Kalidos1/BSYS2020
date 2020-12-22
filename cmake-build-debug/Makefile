@@ -305,6 +305,33 @@ Chapter19/tlb.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter19/tlb.c.s
 .PHONY : Chapter19/tlb.c.s
 
+Chapter29/bTree.o: Chapter29/bTree.c.o
+
+.PHONY : Chapter29/bTree.o
+
+# target to build an object file
+Chapter29/bTree.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/bTree.c.o
+.PHONY : Chapter29/bTree.c.o
+
+Chapter29/bTree.i: Chapter29/bTree.c.i
+
+.PHONY : Chapter29/bTree.i
+
+# target to preprocess a source file
+Chapter29/bTree.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/bTree.c.i
+.PHONY : Chapter29/bTree.c.i
+
+Chapter29/bTree.s: Chapter29/bTree.c.s
+
+.PHONY : Chapter29/bTree.s
+
+# target to generate assembly for a file
+Chapter29/bTree.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/bTree.c.s
+.PHONY : Chapter29/bTree.c.s
+
 Chapter29/concurrentCounter.o: Chapter29/concurrentCounter.c.o
 
 .PHONY : Chapter29/concurrentCounter.o
@@ -331,6 +358,60 @@ Chapter29/concurrentCounter.s: Chapter29/concurrentCounter.c.s
 Chapter29/concurrentCounter.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/concurrentCounter.c.s
 .PHONY : Chapter29/concurrentCounter.c.s
+
+Chapter29/hashList.o: Chapter29/hashList.c.o
+
+.PHONY : Chapter29/hashList.o
+
+# target to build an object file
+Chapter29/hashList.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/hashList.c.o
+.PHONY : Chapter29/hashList.c.o
+
+Chapter29/hashList.i: Chapter29/hashList.c.i
+
+.PHONY : Chapter29/hashList.i
+
+# target to preprocess a source file
+Chapter29/hashList.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/hashList.c.i
+.PHONY : Chapter29/hashList.c.i
+
+Chapter29/hashList.s: Chapter29/hashList.c.s
+
+.PHONY : Chapter29/hashList.s
+
+# target to generate assembly for a file
+Chapter29/hashList.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/hashList.c.s
+.PHONY : Chapter29/hashList.c.s
+
+Chapter29/linkedList.o: Chapter29/linkedList.c.o
+
+.PHONY : Chapter29/linkedList.o
+
+# target to build an object file
+Chapter29/linkedList.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.o
+.PHONY : Chapter29/linkedList.c.o
+
+Chapter29/linkedList.i: Chapter29/linkedList.c.i
+
+.PHONY : Chapter29/linkedList.i
+
+# target to preprocess a source file
+Chapter29/linkedList.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.i
+.PHONY : Chapter29/linkedList.c.i
+
+Chapter29/linkedList.s: Chapter29/linkedList.c.s
+
+.PHONY : Chapter29/linkedList.s
+
+# target to generate assembly for a file
+Chapter29/linkedList.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BSYSC.dir/build.make CMakeFiles/BSYSC.dir/Chapter29/linkedList.c.s
+.PHONY : Chapter29/linkedList.c.s
 
 Chapter5/Question1/ForkVariable.o: Chapter5/Question1/ForkVariable.c.o
 
@@ -656,9 +737,18 @@ help:
 	@echo "... Chapter19/tlb.o"
 	@echo "... Chapter19/tlb.i"
 	@echo "... Chapter19/tlb.s"
+	@echo "... Chapter29/bTree.o"
+	@echo "... Chapter29/bTree.i"
+	@echo "... Chapter29/bTree.s"
 	@echo "... Chapter29/concurrentCounter.o"
 	@echo "... Chapter29/concurrentCounter.i"
 	@echo "... Chapter29/concurrentCounter.s"
+	@echo "... Chapter29/hashList.o"
+	@echo "... Chapter29/hashList.i"
+	@echo "... Chapter29/hashList.s"
+	@echo "... Chapter29/linkedList.o"
+	@echo "... Chapter29/linkedList.i"
+	@echo "... Chapter29/linkedList.s"
 	@echo "... Chapter5/Question1/ForkVariable.o"
 	@echo "... Chapter5/Question1/ForkVariable.i"
 	@echo "... Chapter5/Question1/ForkVariable.s"

@@ -61,7 +61,6 @@ Aufgabe 4:
 
 TODO
 
-
 Aufgabe 5:
 
 
@@ -70,8 +69,72 @@ TODO
 
 Aufgabe 6:
 
+HashList:
 
-TODO
+100 Eintrage - 4 Threads:
+./hashList 100 4
+Number of Increments by each Thread:  100
+Number of Threads:  4
+Counter is: -1
+sloppyCounterAccessTime: 53879 ns
+sloppyCounterAccessTime in Sekunden: 0.000054 s
+(venv) ➜  Chapter29 git:(master) ✗ ./hashList 100 4
+Number of Increments by each Thread:  100
+Number of Threads:  4
+Counter is: -1
+sloppyCounterAccessTime: 47986 ns
+
+-> ca. 50000 ns
+
+LinkedList:
+
+100 Einträge - 4 Threads:
+
+./linkedList 100 4
+Number of Increments by each Thread:  100
+Number of Threads:  4
+Counter is: -1
+sloppyCounterAccessTime: 142516 ns
+sloppyCounterAccessTime in Sekunden: 0.000143 s
+(venv) ➜  Chapter29 git:(master) ✗ ./linkedList 100 4
+Number of Increments by each Thread:  100
+Number of Threads:  4
+Counter is: -1
+sloppyCounterAccessTime: 168306 ns
+sloppyCounterAccessTime in Sekunden: 0.000168 s
+
+-> ca. 150000ns
 
 
+-> Diese Diskrepanz wird immer höher je mehr Einträge es werden
+
+./hashList 10000 4
+Number of Increments by each Thread:  10000
+Number of Threads:  4
+Counter is: -1
+sloppyCounterAccessTime: 2706889 ns
+sloppyCounterAccessTime in Sekunden: 0.002707 s
+(venv) ➜  Chapter29 git:(master) ✗ ./linkedList 10000 4
+Number of Increments by each Thread:  10000
+Number of Threads:  4
+Counter is: -1
+sloppyCounterAccessTime: 11182479 ns
+sloppyCounterAccessTime in Sekunden: 0.011182 s
+
+
+-> Das sieht man auch wenn man die Anzahl der Threads erhöht
+
+z.B.
+./linkedList 100 10
+    Number of Increments by each Thread:  100
+    Number of Threads:  10
+    Counter is: -1
+    sloppyCounterAccessTime: 420202 ns
+    sloppyCounterAccessTime in Sekunden: 0.000420 s
+    (venv) ➜  Chapter29 git:(master) ✗ ./hashList 100 10
+    Number of Increments by each Thread:  100
+    Number of Threads:  10
+    Counter is: -1
+    sloppyCounterAccessTime: 149447 ns
+    sloppyCounterAccessTime in Sekunden: 0.000149 s
 

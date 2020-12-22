@@ -368,4 +368,106 @@ Consumer consumption:
 
 Total time: 0.00 seconds
 
+-> Mit einem Größeren Buffer kommt öfters auch der Producer mehrmals dran -> 2 Einträge auf einmal
+-> Eine kleine geringere Code-Zeilen Menge
+-> Jedoch ist nicht ein sehr großer Unterschied erkennbar
+
+
+NUM_FULL:
+
+Different Buffer Sizes:
+- Nie komplett voll, könnte aber theoretisch sein, wenn der Producer 10 Einträge hat und die alle sofort reinschreibt
+-> Die Wahrscheinlichkeit ist aber hoch, das dabei ein Consumer eingeschaltet wird, der diese Einträge wieder runternimmt
+-> Schwer vorherzusagen was passiert
+
+Number of Prduced Items:
+- Mit 100 Einträgen pro Producer ist die Wahrscheinlichkeit hoch, dass auch der Buffer mal voll ist -> 9 Einträge
+-> Sind relativ viele Einträge und 1 Consumer kann nicht sehr effizient alle EInträge behandeln
+
+Sleep String:
+
+- Mit diesem Sleep String wird der Buffer komplett voll geschrieben, und dann erst danach wird immer wieder der Consumer eingeschalten um 1 Eintrag zu konsumieren
+-> Jedoch wird sofort danach wieder 1 Eintrag nachgelegt
+-> Hierbei wird zu wenig konsumiert (Sleeped) was zur folge hat, dass das Program sehr lange läuft
+-> Total time: 101.24 seconds
+
+
+Question 3:
+
+- ./main-two-cvs-while -l 100 -m 10 -p 1 -c 1 -v -t
+
+-> Bei diesem Beispiel ist ein kleiner Unterschied zwischen Mac und Linux:
+-> Bei Mac wird hierbei der Buffer von Zeit zu Zeit relativ groß gefüllt, wobei bei Linux immer der Buffer meistens zwischen 0 und 1 wechselt, da sofort nach einem Producer der Consumer kommt
+
+Question 4:
+
+- Da der Consumer 1s wartet bei c3 dauert es bei 10 Einträgen ungefähr bisschen mehr als 10 Sekunden (End-Of-Stream Time, etc.)
+Consumer consumption:
+  C0 -> 5
+  C1 -> 2
+  C2 -> 3
+
+Total time: 11.02 seconds
+
+
+Question 5:
+
+- Da sich die Zeit nicht verändert sondern nur der Buffer ändert es sich nichts im VErgleich zu Aufgabe 4
+-> Da der Consumer 1s wartet und immer nur 1 Consumer drann ist, ändert es sich nichts an der Zeit
+-> Auch wenn der Buffer voller wird und der Producer möglicherweise mehr als 1 Item reinschreiben kann
+ändert sich in dem Fall nichts
+
+
+Question 6:
+
+- Müsste schneller gehen, da die Stelle an dem der Consumer schlafen gelegt wird, nicht die anderen Consumer auch verhindert
+-> Der Consumer gibt das Lock frei und während der Consumer schläft, können andere Threads, dieses lock acquiren und damit dann weiterverfahren
+-> Ca. kann man dann die vorheirge Zeit durch 3 teilen
+
+Consumer consumption:
+  C0 -> 4
+  C1 -> 3
+  C2 -> 3
+
+Total time: 5.01 seconds
+
+Question 7:
+
+- Es wird sich wieder nicht ändern an der Zeit, da es wieder draufankommt wie oft ein Consumer läuft, und dieser dann 1s dann schläft
+- Dabei ändert sich nichts, von der Zeit des Producers her
+
+-> In dem ersten Beispiel wird alles Linear consumiert -> 1 Producer-1 Consumer, usw.
+-> Mit Buffer Größe 3 -> 3 -> Producer -> 1 Consumer -> 1 Consumer -> 1 Consumer -> usw.
+
+
+Question 8:
+
+- Mit nur einem CV ist das Problem, dass ein Thread nicht weis, wem er als nächstes das Signal senden soll
+- Dementsprechend kann man mit nur 1 Producer und 1 Consumer kein Problem darstellen
+
+
+Question 9:
+
+./main-one-cv-while -p 1 -c 2 -m 1 -P 0,0,0,1,0,0,0 -C 0,0,0,1,0,0,0:0,0,0,1,0,0,0 -l 5 -v -t
+
+-> Mit diesem String, kann man ein Deadlock verursachen, indem ein Consumer Thread einem anderen Thread signalisiert
+jedoch den falschen Thread nimmt (Consumer) und der dann kein Eintrag zum holen hat und somit stuck ist
+-> Der Producer schläft hierbei auch, da er von niemandem geweckt wird
+-> Und der Consumer hängt auch, da es kein Eintrag gibt den er Consumen kann
+
+
+Question 10:
+
+-> Mit einem Producer und Consumer gibt es wieder keine Probleme
+-> Mit 2 Consumer kann man ein Problem erstellen:
+./main-two-cvs-if -p 1 -c 2 -m 1 -C 0,0,1,0,0,0,0:0,0,1,0,0,0,0 -l 5 -v -t -> error: tried to get an empty buffer
+(GEHT NUR AUF CONTAINER, NICHT AUF MAC)
+
+Question 11:
+
+-> Wenn man das Get und Fill nicht mit Locks sichert, dann könnte man mit dem Producer sleepen ohne zu fillen und dann mit dem Consumer getten ohne das was drinn ist
+./main-two-cvs-while-extra-unlock -p 1 -c 2 -m 10 -l 10 -v -C 0,0,0,0,1,0,0:0,0,0,0,0,0,0
+
+-> Der erste Consumer konsumiert nur einen Wert
+
 

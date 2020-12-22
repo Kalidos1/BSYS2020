@@ -77,40 +77,39 @@ void* worker(void* arg) {
 }
 
 int main(int argc, char const *argv[]) {
-    if (argc > 2) {
+    if (argc > 3) {
         printf("To many arguments");
         return -1;
     }
-    if (argc < 1) {
-        printf("No arguments given. One Argument expected. \n Give your Number of increments by each thread\n");
+    if (argc < 2) {
+        printf("No arguments given. Two Arguments expected. \n Give your Number of increments by each thread and your number of Threads\n");
         return -1;
     }
-    const int increment = atoi(argv[1]);
-    printf("Number of Increments by each Thread:  %i\n", increment);
+    if (argc == 3) {
+        const int increment = atoi(argv[1]);
+        const int threads = atoi(argv[2]);
+        pthread_t thread[threads];
+        printf("Number of Increments by each Thread:  %i\n", increment);
+        printf("Number of Threads:  %i\n", threads);
 
-    init(&c);
+        init(&c);
 
-    pthread_t p1, p2, p3, p4, p5;
-    Pthread_create(&p1, NULL, worker, (void *) (long long) increment);
-    Pthread_create(&p2, NULL, worker, (void *) (long long) increment);
-    Pthread_create(&p3, NULL, worker, (void *) (long long) increment);
-    Pthread_create(&p4, NULL, worker, (void *) (long long) increment);
-    Pthread_create(&p5, NULL, worker, (void *) (long long) increment);
+        for (int i = 0; i < threads; i++) {
+            Pthread_create(&thread[i], NULL, worker, (void *) (long long) increment);
+        }
 
+        for (int i = 0; i < threads; i++) {
+            Pthread_join(thread[i], NULL);
+        }
 
-    Pthread_join(p1, NULL);
-    Pthread_join(p2, NULL);
-    Pthread_join(p3, NULL);
-    Pthread_join(p4, NULL);
-    Pthread_join(p5, NULL);
+        printf("Counter is: %d\n", get(&c));
+        double accessTimeSeconds = (double) counterAccessTime / 1e9;
+        printf("counterAccessTime: %ld ns\n", counterAccessTime);
+        printf("counterAccessTime in Sekunden: %f s\n", (double) accessTimeSeconds);
+        //unsigned long calcTime = (counterAccessTime / 4);
+        //printf("\nOne Counter-Access takes %ld ns\n", calcTime);
 
-    printf("Counter is: %d\n", get(&c));
-    double accessTimeSeconds = (double) counterAccessTime / 1e9;
-    printf("counterAccessTime: %ld ns\n", counterAccessTime);
-    printf("counterAccessTime in Sekunden: %f s\n", (double) accessTimeSeconds);
-    //unsigned long calcTime = (counterAccessTime / 4);
-    //printf("\nOne Counter-Access takes %ld ns\n", calcTime);
-
+    }
     return 0;
 }
 

@@ -18,65 +18,68 @@
 
 #include "mythreads.h"
 
-typedef struct __counterSloppy_t {
-    int global;
-    pthread_mutex_t glock;
-    int local[4];
-    pthread_mutex_t llock[4];
-    int threshold;
-} counter_t;
+typedef struct __node_t {
+    int key;
+    struct __node_t *next;
+} node_t;
 
-// init: record threshold, init locks, init values
-//       of all local counts and global count
-void init(counter_t *c, int threshold) {
-    c->threshold = threshold;
-    c->global = 0;
-    pthread_mutex_init(&c->glock, NULL);
-    int i;
-    for (i = 0; i < 4; i++) {
-        c->local[i] = 0;
-        pthread_mutex_init(&c->llock[i], NULL);
+typedef struct __list_t {
+    node_t *head;
+    pthread_mutex_t lock;
+} list_t;
+
+
+void List_Init(list_t *L) {
+    L->head = NULL;
+    pthread_mutex_init(&L->lock, NULL);
+}
+
+int List_Insert(list_t *L, int key) {
+    node_t *new = malloc(sizeof(node_t));
+    if (new == NULL) {
+        perror((const char *) malloc);
+        pthread_mutex_unlock(&L->lock);
+        return -1; // fail
     }
+    new->key = key;
+    pthread_mutex_lock(&L->lock);
+    new->next = L->head;
+    L->head = new;
+    pthread_mutex_unlock(&L->lock);
+    return 0; // success
 }
 
-// update: usually, just grab local lock and update local amount
-//         once local count has risen by ’threshold’, grab global
-// lock and transfer local values to it
-void update(counter_t *c, int threadID, int amt) {
-    pthread_mutex_lock(&c->llock[threadID]);
-    c->local[threadID] += amt;   // assumes amt > 0
-    if (c->local[threadID] >= c->threshold) { // transfer to global
-        pthread_mutex_lock(&c->glock);
-        c->global += c->local[threadID];
-        pthread_mutex_unlock(&c->glock);
-        c->local[threadID] = 0;
+int List_Lookup(list_t *L, int key) {
+    int rv = -1;
+    pthread_mutex_lock(&L->lock);
+    node_t *curr = L->head;
+    while (curr) {
+        if (curr->key == key) {
+            rv = 0;
+            return 0; // success
+        }
+        curr = curr->next;
     }
-    pthread_mutex_unlock(&c->llock[threadID]);
-}
-// get: just return global amount (which may not be perfect)
-int get(counter_t *c) {
-    pthread_mutex_lock(&c->glock);
-    int val = c->global;
-    pthread_mutex_unlock(&c->glock);
-    return val; // only approximate!
+    pthread_mutex_unlock(&L->lock);
+    return rv; // failure
 }
 
 
-counter_t cSloppy;
+node_t node;
+list_t list;
 const unsigned long billion = 1000000000; //Für die Umrechnung -> Sekunde zu Nanosekunde (1 Milliarde)
 unsigned long sloppyCounterAccessTime = 0;
 struct timespec startSloppyAccess, stopSloppyAccess;
 
 void *worker(void *arg) {
     for (int i = 0; i < (long long) arg; i++) {
-        pid_t x = syscall(SYS_gettid);
         // Lock zwischen den Zeit-Messungen ??????
         if (clock_gettime(CLOCK_MONOTONIC_RAW, &startSloppyAccess) < 0) { //CLOCK_REALTIME/CLOCK_MONOTONIC gehen auch
             printf("Start-Clock failed\n");
             exit(1);
         }
 
-        update(&cSloppy, x, 1);
+        List_Insert(&list, i);
         if (clock_gettime(CLOCK_MONOTONIC_RAW, &stopSloppyAccess) < 0) {
             printf("Stop-Clock failed\n");
             exit(1);
@@ -85,11 +88,11 @@ void *worker(void *arg) {
         // -> Umrechnung, falls erster Zeitpunkt < zweiter Zeitpunkt
         if (startSloppyAccess.tv_nsec > stopSloppyAccess.tv_nsec) {
             sloppyCounterAccessTime += (((stopSloppyAccess.tv_sec - 1) - startSloppyAccess.tv_sec) * billion)
-                                 + ((stopSloppyAccess.tv_nsec + billion) - startSloppyAccess.tv_nsec);
+                                       + ((stopSloppyAccess.tv_nsec + billion) - startSloppyAccess.tv_nsec);
         } else {
             // Berechnung der Zeit
             sloppyCounterAccessTime += (stopSloppyAccess.tv_sec - startSloppyAccess.tv_sec) +
-                                 (stopSloppyAccess.tv_nsec - startSloppyAccess.tv_nsec);
+                                       (stopSloppyAccess.tv_nsec - startSloppyAccess.tv_nsec);
         }
     }
     return NULL;
@@ -111,7 +114,7 @@ int main(int argc, char const *argv[]) {
         printf("Number of Increments by each Thread:  %i\n", increment);
         printf("Number of Threads:  %i\n", threads);
 
-        init(&cSloppy, 1024);
+        List_Init(&list);
 
         for (int i = 0; i < threads; i++) {
             Pthread_create(&thread[i], NULL, worker, (void *) (long long) increment);
@@ -121,15 +124,15 @@ int main(int argc, char const *argv[]) {
             Pthread_join(thread[i], NULL);
         }
 
-        printf("Counter is: %d\n", get(&cSloppy));
+        printf("Counter is: %d\n", List_Lookup(&list, increment * threads));
         double accessTimeSeconds = (double) sloppyCounterAccessTime / 1e9;
         printf("sloppyCounterAccessTime: %ld ns\n", sloppyCounterAccessTime);
         printf("sloppyCounterAccessTime in Sekunden: %f s\n", (double) accessTimeSeconds);
         //unsigned long calcTime = (sloppyCounterAccessTime / 4);
         //printf("\nOne Counter-Access takes %ld ns\n", calcTime);
-
     }
 
     return 0;
 }
+
 
