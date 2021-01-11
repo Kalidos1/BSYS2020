@@ -38,7 +38,6 @@ void ns_mutex_release(ns_mutex_t *m) {
     m->counter++;
     sem_post(&m->s1);
     sem_post(&m->s2);
-    sleep(1);
 }
 
 
