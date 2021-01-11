@@ -24,8 +24,8 @@ barrier_t b;
 
 void barrier_init(barrier_t *b, int num_threads) {
     b->counter = num_threads;
-    b->s1 = sem_init(&b->s1, 0, num_threads);
-    b->s2 = sem_init(&b->s2, 0, 0);
+    sem_init(&b->s1, 0, num_threads);
+    sem_init(&b->s2, 0, 0);
     // initialization code goes here
 }
 
