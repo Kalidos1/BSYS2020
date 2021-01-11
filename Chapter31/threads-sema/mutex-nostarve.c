@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <sys/syscall.h>
 #include "common_threads.h"
 
 //
