@@ -12,6 +12,7 @@ void *child_1(void *arg) {
     printf("child 1: before\n");
     sem_post(&s1);
     sem_wait(&s2);
+    sleep(1);
     printf("child 1: after\n");
     return NULL;
 }
@@ -20,6 +21,7 @@ void *child_2(void *arg) {
     printf("child 2: before\n");
     sem_post(&s2);
     sem_wait(&s1);
+    sleep(1);
     printf("child 2: after\n");
     return NULL;
 }
