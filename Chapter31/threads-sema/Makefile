@@ -21,6 +21,3 @@ reader-writer: reader-writer.c $(HEADERS)
 
 reader-writer-nostarve: reader-writer-nostarve.c $(HEADERS)
 	gcc -o reader-writer-nostarve reader-writer-nostarve.c -Wall -pthread
-
-mutex-nostarve: mutex-nostarve.c $(HEADERS)
-	gcc -o mutex-nostarve mutex-nostarve.c -Wall -pthread
