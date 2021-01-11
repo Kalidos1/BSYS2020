@@ -1,5 +1,5 @@
 
-BINARIES = barrier fork-join reader-writer reader-writer-nostarve rendezvous
+BINARIES = barrier fork-join mutex-nostarve reader-writer reader-writer-nostarve rendezvous
 HEADERS = common_threads.h
 
 all: $(BINARIES)
