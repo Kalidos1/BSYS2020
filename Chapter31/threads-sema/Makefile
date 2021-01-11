@@ -1,5 +1,5 @@
 
-BINARIES = barrier fork-join mutex-nostarve reader-writer reader-writer-nostarve rendezvous
+BINARIES = barrier fork-join reader-writer reader-writer-nostarve rendezvous
 HEADERS = common_threads.h
 
 all: $(BINARIES)
@@ -21,3 +21,6 @@ reader-writer: reader-writer.c $(HEADERS)
 
 reader-writer-nostarve: reader-writer-nostarve.c $(HEADERS)
 	gcc -o reader-writer-nostarve reader-writer-nostarve.c -Wall -pthread
+
+mutex-nostarve: mutex-nostarve.c $(HEADERS)
+	gcc -o mutex-nostarve mutex-nostarve.c -Wall -pthread
