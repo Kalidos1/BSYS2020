@@ -42,10 +42,12 @@ void rwlock_release_readlock(rwlock_t *rw) {
 
 void rwlock_acquire_writelock(rwlock_t *rw) {
     sem_wait(&rw->writelock);
+    sleep(1);
 }
 
 void rwlock_release_writelock(rwlock_t *rw) {
     sem_post(&rw->writelock);
+    sleep(1);
 }
 
 //
