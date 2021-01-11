@@ -27,8 +27,8 @@ void *child_2(void *arg) {
 int main(int argc, char *argv[]) {
     pthread_t p1, p2;
     printf("parent: begin\n");
-    sem_init(&s1, 0, 1);
-    sem_init(&s2, 0, 1);
+    sem_init(&s1, 0, 0);
+    sem_init(&s2, 0, 0);
     Pthread_create(&p1, NULL, child_1, NULL);
     Pthread_create(&p2, NULL, child_2, NULL);
     Pthread_join(p1, NULL);
