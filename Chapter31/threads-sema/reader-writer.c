@@ -8,9 +8,6 @@
 //
 
 
-
-// Mögliche Lösung?????
-// Könnte das Semaphor auf die Anzahl der Readers setzen und nachdem alle Readers gelesen haben, könnte man einmal das Lock an den Writer Geben, sodass dieser auch drann kommt
 typedef struct __rwlock_t {
     sem_t lock;
     sem_t writelock;
